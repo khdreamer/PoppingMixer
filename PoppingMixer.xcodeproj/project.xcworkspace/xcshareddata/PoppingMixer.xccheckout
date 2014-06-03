@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>97E4936A-4676-4588-A7AD-6DFA79F273DB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PoppingMixer</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>25708B02-2A0B-41CD-A14B-81A5B94B90A0</key>
+		<string>https://github.com/khdreamer/PoppingMixer.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PoppingMixer.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>25708B02-2A0B-41CD-A14B-81A5B94B90A0</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/khdreamer/PoppingMixer.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>25708B02-2A0B-41CD-A14B-81A5B94B90A0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>25708B02-2A0B-41CD-A14B-81A5B94B90A0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PoppingMixer</string>
+		</dict>
+	</array>
+</dict>
+</plist>
