@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C1B15C119432D550099E920 /* AudioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B15C019432D550099E920 /* AudioModel.m */; };
+		1C1B15C4194330C60099E920 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B15C3194330C60099E920 /* AudioToolbox.framework */; };
+		1C1B15C6194330E00099E920 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B15C5194330E00099E920 /* AVFoundation.framework */; };
+		1C1B15C8194330EF0099E920 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B15C7194330EF0099E920 /* CoreAudio.framework */; };
+		1C1B15CC1943338D0099E920 /* Cabasa.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 1C1B15CB1943338D0099E920 /* Cabasa.sf2 */; };
+		1C1B15CE194342C90099E920 /* HS Magic Techno Drums.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 1C1B15CD194342C90099E920 /* HS Magic Techno Drums.sf2 */; };
+		1C1B15D01943433A0099E920 /* acoustic_grand_piano.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 1C1B15CF1943433A0099E920 /* acoustic_grand_piano.sf2 */; };
+		1C1B15D21943446C0099E920 /* HS R8 Drums.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 1C1B15D11943446C0099E920 /* HS R8 Drums.sf2 */; };
 		1CF0EDBF193D85840001EE68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDBE193D85840001EE68 /* Foundation.framework */; };
 		1CF0EDC1193D85840001EE68 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDC0193D85840001EE68 /* CoreGraphics.framework */; };
 		1CF0EDC3193D85840001EE68 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDC2193D85840001EE68 /* UIKit.framework */; };
@@ -35,6 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C1B15BF19432D550099E920 /* AudioModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioModel.h; path = Models/AudioModel.h; sourceTree = "<group>"; };
+		1C1B15C019432D550099E920 /* AudioModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioModel.m; path = Models/AudioModel.m; sourceTree = "<group>"; };
+		1C1B15C3194330C60099E920 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1C1B15C5194330E00099E920 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1C1B15C7194330EF0099E920 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		1C1B15CB1943338D0099E920 /* Cabasa.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cabasa.sf2; sourceTree = "<group>"; };
+		1C1B15CD194342C90099E920 /* HS Magic Techno Drums.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HS Magic Techno Drums.sf2"; sourceTree = "<group>"; };
+		1C1B15CF1943433A0099E920 /* acoustic_grand_piano.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = acoustic_grand_piano.sf2; sourceTree = "<group>"; };
+		1C1B15D11943446C0099E920 /* HS R8 Drums.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HS R8 Drums.sf2"; sourceTree = "<group>"; };
 		1CF0EDBB193D85840001EE68 /* PoppingMixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoppingMixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CF0EDBE193D85840001EE68 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1CF0EDC0193D85840001EE68 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -47,8 +64,8 @@
 		1CF0EDCE193D85840001EE68 /* PoppingMixerAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoppingMixerAppDelegate.m; sourceTree = "<group>"; };
 		1CF0EDD1193D85840001EE68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		1CF0EDD4193D85840001EE68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		1CF0EDD6193D85840001EE68 /* PoppingMixerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PoppingMixerViewController.h; sourceTree = "<group>"; };
-		1CF0EDD7193D85840001EE68 /* PoppingMixerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoppingMixerViewController.m; sourceTree = "<group>"; };
+		1CF0EDD6193D85840001EE68 /* PoppingMixerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PoppingMixerViewController.h; path = Controllers/PoppingMixerViewController.h; sourceTree = "<group>"; };
+		1CF0EDD7193D85840001EE68 /* PoppingMixerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PoppingMixerViewController.m; path = Controllers/PoppingMixerViewController.m; sourceTree = "<group>"; };
 		1CF0EDD9193D85840001EE68 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1CF0EDDF193D85840001EE68 /* PoppingMixerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoppingMixerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CF0EDE0193D85840001EE68 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -62,6 +79,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C1B15C8194330EF0099E920 /* CoreAudio.framework in Frameworks */,
+				1C1B15C6194330E00099E920 /* AVFoundation.framework in Frameworks */,
+				1C1B15C4194330C60099E920 /* AudioToolbox.framework in Frameworks */,
 				1CF0EDC1193D85840001EE68 /* CoreGraphics.framework in Frameworks */,
 				1CF0EDC3193D85840001EE68 /* UIKit.framework in Frameworks */,
 				1CF0EDBF193D85840001EE68 /* Foundation.framework in Frameworks */,
@@ -103,6 +123,9 @@
 		1CF0EDBD193D85840001EE68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1C1B15C7194330EF0099E920 /* CoreAudio.framework */,
+				1C1B15C5194330E00099E920 /* AVFoundation.framework */,
+				1C1B15C3194330C60099E920 /* AudioToolbox.framework */,
 				1CF0EDBE193D85840001EE68 /* Foundation.framework */,
 				1CF0EDC0193D85840001EE68 /* CoreGraphics.framework */,
 				1CF0EDC2193D85840001EE68 /* UIKit.framework */,
@@ -114,12 +137,12 @@
 		1CF0EDC4193D85840001EE68 /* PoppingMixer */ = {
 			isa = PBXGroup;
 			children = (
+				1CF0EDF9193D8D360001EE68 /* Resources */,
+				1CF0EDF6193D8CFC0001EE68 /* Controllers */,
+				1CF0EDF7193D8D0D0001EE68 /* Views */,
+				1CF0EDF8193D8D200001EE68 /* Models */,
 				1CF0EDCD193D85840001EE68 /* PoppingMixerAppDelegate.h */,
 				1CF0EDCE193D85840001EE68 /* PoppingMixerAppDelegate.m */,
-				1CF0EDD0193D85840001EE68 /* Main_iPhone.storyboard */,
-				1CF0EDD3193D85840001EE68 /* Main_iPad.storyboard */,
-				1CF0EDD6193D85840001EE68 /* PoppingMixerViewController.h */,
-				1CF0EDD7193D85840001EE68 /* PoppingMixerViewController.m */,
 				1CF0EDD9193D85840001EE68 /* Images.xcassets */,
 				1CF0EDC5193D85840001EE68 /* Supporting Files */,
 			);
@@ -153,6 +176,44 @@
 				1CF0EDE9193D85840001EE68 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1CF0EDF6193D8CFC0001EE68 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1CF0EDD6193D85840001EE68 /* PoppingMixerViewController.h */,
+				1CF0EDD7193D85840001EE68 /* PoppingMixerViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1CF0EDF7193D8D0D0001EE68 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1CF0EDD0193D85840001EE68 /* Main_iPhone.storyboard */,
+				1CF0EDD3193D85840001EE68 /* Main_iPad.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		1CF0EDF8193D8D200001EE68 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1C1B15BF19432D550099E920 /* AudioModel.h */,
+				1C1B15C019432D550099E920 /* AudioModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		1CF0EDF9193D8D360001EE68 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1C1B15D11943446C0099E920 /* HS R8 Drums.sf2 */,
+				1C1B15CF1943433A0099E920 /* acoustic_grand_piano.sf2 */,
+				1C1B15CD194342C90099E920 /* HS Magic Techno Drums.sf2 */,
+				1C1B15CB1943338D0099E920 /* Cabasa.sf2 */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,10 +293,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C1B15D21943446C0099E920 /* HS R8 Drums.sf2 in Resources */,
 				1CF0EDD5193D85840001EE68 /* Main_iPad.storyboard in Resources */,
 				1CF0EDDA193D85840001EE68 /* Images.xcassets in Resources */,
 				1CF0EDD2193D85840001EE68 /* Main_iPhone.storyboard in Resources */,
+				1C1B15CC1943338D0099E920 /* Cabasa.sf2 in Resources */,
+				1C1B15CE194342C90099E920 /* HS Magic Techno Drums.sf2 in Resources */,
 				1CF0EDC9193D85840001EE68 /* InfoPlist.strings in Resources */,
+				1C1B15D01943433A0099E920 /* acoustic_grand_piano.sf2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +321,7 @@
 			files = (
 				1CF0EDCF193D85840001EE68 /* PoppingMixerAppDelegate.m in Sources */,
 				1CF0EDCB193D85840001EE68 /* main.m in Sources */,
+				1C1B15C119432D550099E920 /* AudioModel.m in Sources */,
 				1CF0EDD8193D85840001EE68 /* PoppingMixerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +359,7 @@
 				1CF0EDD1193D85840001EE68 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		1CF0EDD3193D85840001EE68 /* Main_iPad.storyboard */ = {
@@ -301,6 +368,7 @@
 				1CF0EDD4193D85840001EE68 /* Base */,
 			);
 			name = Main_iPad.storyboard;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		1CF0EDE9193D85840001EE68 /* InfoPlist.strings */ = {
@@ -471,6 +539,7 @@
 				1CF0EDF2193D85840001EE68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1CF0EDF3193D85840001EE68 /* Build configuration list for PBXNativeTarget "PoppingMixerTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +548,7 @@
 				1CF0EDF5193D85840001EE68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,8 +7,11 @@
 //
 
 #import "PoppingMixerViewController.h"
+#import "AudioModel.h"
 
 @interface PoppingMixerViewController ()
+
+@property (nonatomic, strong) AudioModel *audioModel;
 
 @end
 
@@ -20,6 +23,20 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+
+
+- (AudioModel *)audioModel {
+    
+    if(!_audioModel){
+        
+        _audioModel = [[AudioModel alloc] init];
+        
+    }
+    return _audioModel;
+    
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -29,6 +46,7 @@
 - (IBAction)addBeat:(id)sender {
     
     NSLog(@"add beat");
+    [self.audioModel playNote:24 withGain:200];
     
 }
 @end
