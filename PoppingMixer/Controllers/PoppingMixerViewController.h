@@ -10,8 +10,10 @@
 
 @interface PoppingMixerViewController : UIViewController
 
-
 @property (weak, nonatomic) IBOutlet UIButton *touchMeButton;
+@property (weak, nonatomic) IBOutlet UISlider *reverbSlider;
+
 - (IBAction)addBeat:(id)sender;
+- (IBAction)applyReverb:(UISlider *)sender;
 
 @end

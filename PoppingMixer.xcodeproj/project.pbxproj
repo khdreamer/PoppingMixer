@@ -12,6 +12,10 @@
 		1C1B15C6194330E00099E920 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B15C5194330E00099E920 /* AVFoundation.framework */; };
 		1C1B15C8194330EF0099E920 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B15C7194330EF0099E920 /* CoreAudio.framework */; };
 		1C1B15D21943446C0099E920 /* HS R8 Drums.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 1C1B15D11943446C0099E920 /* HS R8 Drums.sf2 */; };
+		1C511FDF19449FAF0031764C /* PoppingMixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EDD7193D85840001EE68 /* PoppingMixerViewController.m */; };
+		1C511FEB1944A2F50031764C /* track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C511FEA1944A2F50031764C /* track.mp3 */; };
+		1C511FFA1944A4170031764C /* libTheAmazingAudioEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C511FF71944A4060031764C /* libTheAmazingAudioEngine.a */; };
+		1C69407F194439F30059F643 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C69407E194439F30059F643 /* Accelerate.framework */; };
 		1CF0EDBF193D85840001EE68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDBE193D85840001EE68 /* Foundation.framework */; };
 		1CF0EDC1193D85840001EE68 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDC0193D85840001EE68 /* CoreGraphics.framework */; };
 		1CF0EDC3193D85840001EE68 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDC2193D85840001EE68 /* UIKit.framework */; };
@@ -20,7 +24,6 @@
 		1CF0EDCF193D85840001EE68 /* PoppingMixerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EDCE193D85840001EE68 /* PoppingMixerAppDelegate.m */; };
 		1CF0EDD2193D85840001EE68 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CF0EDD0193D85840001EE68 /* Main_iPhone.storyboard */; };
 		1CF0EDD5193D85840001EE68 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CF0EDD3193D85840001EE68 /* Main_iPad.storyboard */; };
-		1CF0EDD8193D85840001EE68 /* PoppingMixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EDD7193D85840001EE68 /* PoppingMixerViewController.m */; };
 		1CF0EDDA193D85840001EE68 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CF0EDD9193D85840001EE68 /* Images.xcassets */; };
 		1CF0EDE1193D85840001EE68 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDE0193D85840001EE68 /* XCTest.framework */; };
 		1CF0EDE2193D85840001EE68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDBE193D85840001EE68 /* Foundation.framework */; };
@@ -30,6 +33,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1C511FF61944A4060031764C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C511FF21944A4060031764C /* TheAmazingAudioEngine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4C215CEC1523A7D500D36CAD;
+			remoteInfo = TheAmazingAudioEngine;
+		};
+		1C511FF81944A4110031764C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C511FF21944A4060031764C /* TheAmazingAudioEngine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C215CEB1523A7D500D36CAD;
+			remoteInfo = TheAmazingAudioEngine;
+		};
 		1CF0EDE4193D85840001EE68 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1CF0EDB3193D85840001EE68 /* Project object */;
@@ -46,6 +63,9 @@
 		1C1B15C5194330E00099E920 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1C1B15C7194330EF0099E920 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		1C1B15D11943446C0099E920 /* HS R8 Drums.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HS R8 Drums.sf2"; sourceTree = "<group>"; };
+		1C511FEA1944A2F50031764C /* track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = track.mp3; sourceTree = "<group>"; };
+		1C511FF21944A4060031764C /* TheAmazingAudioEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TheAmazingAudioEngine.xcodeproj; path = TheAmazingAudioEngine/TheAmazingAudioEngine.xcodeproj; sourceTree = "<group>"; };
+		1C69407E194439F30059F643 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		1CF0EDBB193D85840001EE68 /* PoppingMixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoppingMixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CF0EDBE193D85840001EE68 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1CF0EDC0193D85840001EE68 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -73,12 +93,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C1B15C8194330EF0099E920 /* CoreAudio.framework in Frameworks */,
-				1C1B15C6194330E00099E920 /* AVFoundation.framework in Frameworks */,
+				1C511FFA1944A4170031764C /* libTheAmazingAudioEngine.a in Frameworks */,
+				1C69407F194439F30059F643 /* Accelerate.framework in Frameworks */,
 				1C1B15C4194330C60099E920 /* AudioToolbox.framework in Frameworks */,
+				1C1B15C6194330E00099E920 /* AVFoundation.framework in Frameworks */,
+				1C1B15C8194330EF0099E920 /* CoreAudio.framework in Frameworks */,
 				1CF0EDC1193D85840001EE68 /* CoreGraphics.framework in Frameworks */,
-				1CF0EDC3193D85840001EE68 /* UIKit.framework in Frameworks */,
 				1CF0EDBF193D85840001EE68 /* Foundation.framework in Frameworks */,
+				1CF0EDC3193D85840001EE68 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +117,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C511FF31944A4060031764C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C511FF71944A4060031764C /* libTheAmazingAudioEngine.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		1CF0EDB2193D85840001EE68 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +147,7 @@
 		1CF0EDBD193D85840001EE68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1C69407E194439F30059F643 /* Accelerate.framework */,
 				1C1B15C7194330EF0099E920 /* CoreAudio.framework */,
 				1C1B15C5194330E00099E920 /* AVFoundation.framework */,
 				1C1B15C3194330C60099E920 /* AudioToolbox.framework */,
@@ -202,7 +233,9 @@
 		1CF0EDF9193D8D360001EE68 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1C511FF21944A4060031764C /* TheAmazingAudioEngine.xcodeproj */,
 				1C1B15D11943446C0099E920 /* HS R8 Drums.sf2 */,
+				1C511FEA1944A2F50031764C /* track.mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -221,6 +254,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1C511FF91944A4110031764C /* PBXTargetDependency */,
 			);
 			name = PoppingMixer;
 			productName = PoppingMixer;
@@ -271,6 +305,12 @@
 			mainGroup = 1CF0EDB2193D85840001EE68;
 			productRefGroup = 1CF0EDBC193D85840001EE68 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1C511FF31944A4060031764C /* Products */;
+					ProjectRef = 1C511FF21944A4060031764C /* TheAmazingAudioEngine.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1CF0EDBA193D85840001EE68 /* PoppingMixer */,
@@ -279,6 +319,16 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		1C511FF71944A4060031764C /* libTheAmazingAudioEngine.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTheAmazingAudioEngine.a;
+			remoteRef = 1C511FF61944A4060031764C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		1CF0EDB9193D85840001EE68 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -286,6 +336,7 @@
 			files = (
 				1C1B15D21943446C0099E920 /* HS R8 Drums.sf2 in Resources */,
 				1CF0EDD5193D85840001EE68 /* Main_iPad.storyboard in Resources */,
+				1C511FEB1944A2F50031764C /* track.mp3 in Resources */,
 				1CF0EDDA193D85840001EE68 /* Images.xcassets in Resources */,
 				1CF0EDD2193D85840001EE68 /* Main_iPhone.storyboard in Resources */,
 				1CF0EDC9193D85840001EE68 /* InfoPlist.strings in Resources */,
@@ -307,10 +358,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C511FDF19449FAF0031764C /* PoppingMixerViewController.m in Sources */,
 				1CF0EDCF193D85840001EE68 /* PoppingMixerAppDelegate.m in Sources */,
 				1CF0EDCB193D85840001EE68 /* main.m in Sources */,
 				1C1B15C119432D550099E920 /* AudioModel.m in Sources */,
-				1CF0EDD8193D85840001EE68 /* PoppingMixerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +376,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1C511FF91944A4110031764C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TheAmazingAudioEngine;
+			targetProxy = 1C511FF81944A4110031764C /* PBXContainerItemProxy */;
+		};
 		1CF0EDE5193D85840001EE68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1CF0EDBA193D85840001EE68 /* PoppingMixer */;
@@ -449,8 +505,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PoppingMixer/PoppingMixer-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					PoppingMixer/Resources/TheAmazingAudioEngine/TheAmazingAudioEngine,
+				);
 				INFOPLIST_FILE = "PoppingMixer/PoppingMixer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -462,8 +524,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PoppingMixer/PoppingMixer-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					PoppingMixer/Resources/TheAmazingAudioEngine/TheAmazingAudioEngine,
+				);
 				INFOPLIST_FILE = "PoppingMixer/PoppingMixer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
