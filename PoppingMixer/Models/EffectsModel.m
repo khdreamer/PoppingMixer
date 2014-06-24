@@ -11,7 +11,7 @@
 
 @interface EffectsModel()
 
-@property (nonatomic) BOOL isPlaying;
+@property (nonatomic) BOOL musicAdded;
 
 // effects
 @property (nonatomic, strong) AEAudioUnitFilter *reverb;
@@ -22,7 +22,8 @@
 @property (nonatomic, strong) AEAudioUnitFilter *delay;
 
 // basis
-@property (nonatomic, strong) AEAudioFilePlayer *background;
+@property (nonatomic, strong) AEAudioFilePlayer *instrumental;
+@property (nonatomic, strong) AEAudioFilePlayer *acapella;
 @property (nonatomic, strong) AEAudioController *audioController;
 
 @end
@@ -36,7 +37,7 @@
         return nil;
     }
     
-    _isPlaying = NO;
+    _musicAdded = NO;
     
     return self;
     
@@ -57,13 +58,17 @@
     
 }
 
-- (void)playBackgroundMusic {
+- (void)playMusic {
     
-    NSURL *file = [[NSBundle mainBundle] URLForResource:@"track" withExtension:@"mp3"];
-    self.background = [AEAudioFilePlayer audioFilePlayerWithURL:file
+    NSURL *instrumentalMusic = [[NSBundle mainBundle] URLForResource:@"lies_and_misery_instrumental" withExtension:@"aif"];
+    self.instrumental = [AEAudioFilePlayer audioFilePlayerWithURL:instrumentalMusic
                                                 audioController:_audioController
                                                           error:NULL];
-    [_audioController addChannels:@[_background]];
+    NSURL *acapellaMusic = [[NSBundle mainBundle] URLForResource:@"lies_and_misery_acapella" withExtension:@"aif"];
+    self.acapella = [AEAudioFilePlayer audioFilePlayerWithURL:acapellaMusic
+                                                  audioController:_audioController
+                                                            error:NULL];
+    [_audioController addChannels:@[_instrumental, _acapella]];
     
 }
 
@@ -71,10 +76,16 @@
 
 - (void)togglePlaying {
 
-    if(!self.isPlaying){
+    if(!self.musicAdded){
     
-        [self playBackgroundMusic];
-        self.isPlaying = YES;
+        [self playMusic];
+        self.musicAdded = YES;
+    
+    }
+    else {
+    
+        if(self.instrumental.channelIsPlaying) self.instrumental.channelIsPlaying = NO;
+        else self.instrumental.channelIsPlaying = YES;
     
     }
 

@@ -20,6 +20,7 @@
 @property (strong, nonatomic) BLE* ble;
 
 
+- (IBAction)connect:(id)sender;
 
 - (IBAction)addBeat:(id)sender;
 - (IBAction)playBackground:(id)sender;

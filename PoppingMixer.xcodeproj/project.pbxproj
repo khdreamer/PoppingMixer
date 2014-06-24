@@ -19,6 +19,8 @@
 		1C511FFA1944A4170031764C /* libTheAmazingAudioEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C511FF71944A4060031764C /* libTheAmazingAudioEngine.a */; };
 		1C67AC0119593EA8005012F1 /* EffectsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C67AC0019593EA8005012F1 /* EffectsModel.m */; };
 		1C67AC041959B4AC005012F1 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C67AC021959B4AC005012F1 /* Main_iPad.storyboard */; };
+		1C680AC41959DF33007DED72 /* lies_and_misery_instrumental.aif in Resources */ = {isa = PBXBuildFile; fileRef = 1C680AC21959DF33007DED72 /* lies_and_misery_instrumental.aif */; };
+		1C680AC61959DFEB007DED72 /* lies_and_misery_acapella.aif in Resources */ = {isa = PBXBuildFile; fileRef = 1C680AC51959DFEB007DED72 /* lies_and_misery_acapella.aif */; };
 		1C69407F194439F30059F643 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C69407E194439F30059F643 /* Accelerate.framework */; };
 		1CF0EDBF193D85840001EE68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDBE193D85840001EE68 /* Foundation.framework */; };
 		1CF0EDC1193D85840001EE68 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDC0193D85840001EE68 /* CoreGraphics.framework */; };
@@ -75,6 +77,8 @@
 		1C67ABFF19593EA8005012F1 /* EffectsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EffectsModel.h; path = Models/EffectsModel.h; sourceTree = "<group>"; };
 		1C67AC0019593EA8005012F1 /* EffectsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EffectsModel.m; path = Models/EffectsModel.m; sourceTree = "<group>"; };
 		1C67AC031959B4AC005012F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Views/Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		1C680AC21959DF33007DED72 /* lies_and_misery_instrumental.aif */ = {isa = PBXFileReference; lastKnownFileType = file; name = lies_and_misery_instrumental.aif; path = "Audio Files/lies_and_misery_instrumental.aif"; sourceTree = "<group>"; };
+		1C680AC51959DFEB007DED72 /* lies_and_misery_acapella.aif */ = {isa = PBXFileReference; lastKnownFileType = file; name = lies_and_misery_acapella.aif; path = "Audio Files/lies_and_misery_acapella.aif"; sourceTree = "<group>"; };
 		1C69407E194439F30059F643 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		1CF0EDBB193D85840001EE68 /* PoppingMixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoppingMixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CF0EDBE193D85840001EE68 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -148,6 +152,8 @@
 		1C67ABFE19593C68005012F1 /* Audio Files */ = {
 			isa = PBXGroup;
 			children = (
+				1C680AC51959DFEB007DED72 /* lies_and_misery_acapella.aif */,
+				1C680AC21959DF33007DED72 /* lies_and_misery_instrumental.aif */,
 				1C1B15D11943446C0099E920 /* HS R8 Drums.sf2 */,
 				1C511FEA1944A2F50031764C /* track.mp3 */,
 			);
@@ -369,6 +375,8 @@
 				1C1B15D21943446C0099E920 /* HS R8 Drums.sf2 in Resources */,
 				1C511FEB1944A2F50031764C /* track.mp3 in Resources */,
 				1CF0EDDA193D85840001EE68 /* Images.xcassets in Resources */,
+				1C680AC61959DFEB007DED72 /* lies_and_misery_acapella.aif in Resources */,
+				1C680AC41959DF33007DED72 /* lies_and_misery_instrumental.aif in Resources */,
 				1C67AC041959B4AC005012F1 /* Main_iPad.storyboard in Resources */,
 				1CF0EDD2193D85840001EE68 /* Main_iPhone.storyboard in Resources */,
 				1CF0EDC9193D85840001EE68 /* InfoPlist.strings in Resources */,
