@@ -17,6 +17,7 @@
 		1C511FDF19449FAF0031764C /* PoppingMixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EDD7193D85840001EE68 /* PoppingMixerViewController.m */; };
 		1C511FEB1944A2F50031764C /* track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C511FEA1944A2F50031764C /* track.mp3 */; };
 		1C511FFA1944A4170031764C /* libTheAmazingAudioEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C511FF71944A4060031764C /* libTheAmazingAudioEngine.a */; };
+		1C67AC0119593EA8005012F1 /* EffectsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C67AC0019593EA8005012F1 /* EffectsModel.m */; };
 		1C69407F194439F30059F643 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C69407E194439F30059F643 /* Accelerate.framework */; };
 		1CF0EDBF193D85840001EE68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDBE193D85840001EE68 /* Foundation.framework */; };
 		1CF0EDC1193D85840001EE68 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDC0193D85840001EE68 /* CoreGraphics.framework */; };
@@ -68,9 +69,11 @@
 		1C1B15C3194330C60099E920 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1C1B15C5194330E00099E920 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1C1B15C7194330EF0099E920 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		1C1B15D11943446C0099E920 /* HS R8 Drums.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HS R8 Drums.sf2"; sourceTree = "<group>"; };
-		1C511FEA1944A2F50031764C /* track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = track.mp3; sourceTree = "<group>"; };
+		1C1B15D11943446C0099E920 /* HS R8 Drums.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HS R8 Drums.sf2"; path = "Audio Files/HS R8 Drums.sf2"; sourceTree = "<group>"; };
+		1C511FEA1944A2F50031764C /* track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = track.mp3; path = "Audio Files/track.mp3"; sourceTree = "<group>"; };
 		1C511FF21944A4060031764C /* TheAmazingAudioEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TheAmazingAudioEngine.xcodeproj; path = TheAmazingAudioEngine/TheAmazingAudioEngine.xcodeproj; sourceTree = "<group>"; };
+		1C67ABFF19593EA8005012F1 /* EffectsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EffectsModel.h; path = Models/EffectsModel.h; sourceTree = "<group>"; };
+		1C67AC0019593EA8005012F1 /* EffectsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EffectsModel.m; path = Models/EffectsModel.m; sourceTree = "<group>"; };
 		1C69407E194439F30059F643 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		1CF0EDBB193D85840001EE68 /* PoppingMixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoppingMixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CF0EDBE193D85840001EE68 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -140,6 +143,15 @@
 				1C511FF71944A4060031764C /* libTheAmazingAudioEngine.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1C67ABFE19593C68005012F1 /* Audio Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C1B15D11943446C0099E920 /* HS R8 Drums.sf2 */,
+				1C511FEA1944A2F50031764C /* track.mp3 */,
+			);
+			name = "Audio Files";
 			sourceTree = "<group>";
 		};
 		1CF0EDB2193D85840001EE68 = {
@@ -244,6 +256,8 @@
 			children = (
 				1C1B15BF19432D550099E920 /* AudioModel.h */,
 				1C1B15C019432D550099E920 /* AudioModel.m */,
+				1C67ABFF19593EA8005012F1 /* EffectsModel.h */,
+				1C67AC0019593EA8005012F1 /* EffectsModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -253,8 +267,7 @@
 			children = (
 				188D8CCA1949459A0068B51E /* BLE */,
 				1C511FF21944A4060031764C /* TheAmazingAudioEngine.xcodeproj */,
-				1C1B15D11943446C0099E920 /* HS R8 Drums.sf2 */,
-				1C511FEA1944A2F50031764C /* track.mp3 */,
+				1C67ABFE19593C68005012F1 /* Audio Files */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -381,6 +394,7 @@
 				1C511FDF19449FAF0031764C /* PoppingMixerViewController.m in Sources */,
 				1CF0EDCF193D85840001EE68 /* PoppingMixerAppDelegate.m in Sources */,
 				1CF0EDCB193D85840001EE68 /* main.m in Sources */,
+				1C67AC0119593EA8005012F1 /* EffectsModel.m in Sources */,
 				1C1B15C119432D550099E920 /* AudioModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,6 +545,11 @@
 					PoppingMixer/Resources/TheAmazingAudioEngine/TheAmazingAudioEngine,
 				);
 				INFOPLIST_FILE = "PoppingMixer/PoppingMixer-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PoppingMixer/Resources/SpectrumWorxCompleteSDK/libs/development",
+					"$(PROJECT_DIR)/PoppingMixer/Resources/SpectrumWorxCompleteSDK/libs/release",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -550,6 +569,11 @@
 					PoppingMixer/Resources/TheAmazingAudioEngine/TheAmazingAudioEngine,
 				);
 				INFOPLIST_FILE = "PoppingMixer/PoppingMixer-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PoppingMixer/Resources/SpectrumWorxCompleteSDK/libs/development",
+					"$(PROJECT_DIR)/PoppingMixer/Resources/SpectrumWorxCompleteSDK/libs/release",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;

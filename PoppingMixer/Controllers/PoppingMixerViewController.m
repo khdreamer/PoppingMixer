@@ -9,13 +9,12 @@
 #import "PoppingMixerViewController.h"
 #import "AudioModel.h"
 #import "TheAmazingAudioEngine.h"
+#import "EffectsModel.h"
 
 @interface PoppingMixerViewController ()
 
 @property (nonatomic, strong) AudioModel *audioModel;
-@property (nonatomic, strong) AEAudioController *audioController;
-@property (nonatomic, strong) AEAudioFilePlayer *background;
-@property (nonatomic, strong) AEAudioUnitFilter *reverb;
+@property (nonatomic, strong) EffectsModel *effectsModel;
 
 @property (nonatomic, strong) UILabel *RSSIValueLabel;
 @property (nonatomic, strong) UILabel *sensorStateLabel;
@@ -38,9 +37,8 @@
     NSLog(@"ble.CM.state = %d", self.ble.CM.state);
 //    [self scanPeripheral];
     
-    [self addAudioController];
-    [self playBackgroundMusic];
-    [self addReverb];
+    [self.effectsModel addAudioController];
+    [self.effectsModel initEffects];
     
     self.sensorState = 0;
     
@@ -80,54 +78,7 @@
         }
 }
 
-
-- (void)addAudioController {
-
-    self.audioController = [[AEAudioController alloc]
-                            initWithAudioDescription:[AEAudioController nonInterleaved16BitStereoAudioDescription]
-                            inputEnabled:YES];
-    NSError *error = NULL;
-    BOOL result = [self.audioController start:&error];
-    if ( !result ) {
-        // Report error
-    }
-
-}
-
-- (void)playBackgroundMusic {
-    
-    NSURL *file = [[NSBundle mainBundle] URLForResource:@"track" withExtension:@"mp3"];
-    self.background = [AEAudioFilePlayer audioFilePlayerWithURL:file
-                                                audioController:_audioController
-                                                          error:NULL];
-    [_audioController addChannels:@[_background]];
-
-}
-
-- (void)addReverb {
-    
-    AudioComponentDescription component = AEAudioComponentDescriptionMake(kAudioUnitManufacturer_Apple,
-                                                                          kAudioUnitType_Effect,
-                                                                          kAudioUnitSubType_Reverb2);
-    NSError *error = NULL;
-    self.reverb = [[AEAudioUnitFilter alloc]
-                   initWithComponentDescription:component
-                   audioController:_audioController
-                   error:&error];
-    AudioUnitSetParameter(_reverb.audioUnit,
-                          kReverb2Param_DryWetMix,
-                          kAudioUnitScope_Global,
-                          0,
-                          self.reverbSlider.value,
-                          0);
-    if ( !_reverb ) {
-        // Report error
-    }
-    [self.audioController addFilter:self.reverb];
-
-
-}
-
+#pragma mark - Getters
 
 - (AudioModel *)audioModel {
     
@@ -140,12 +91,26 @@
     
 }
 
+- (EffectsModel *)effectsModel {
+    
+    if(!_effectsModel){
+        
+        _effectsModel = [[EffectsModel alloc] init];
+        
+    }
+    return _effectsModel;
+    
+}
+
+#pragma mark - Stuff
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Effects
 
 - (IBAction)addBeat:(id)sender {
     
@@ -154,14 +119,27 @@
     
 }
 
+- (IBAction)playBackground:(id)sender {
+    
+    [self.effectsModel togglePlaying];
+    
+}
+
 - (IBAction)applyReverb:(UISlider *)sender {
     
-    AudioUnitSetParameter(_reverb.audioUnit,
-                          kReverb2Param_DryWetMix,
-                          kAudioUnitScope_Global,
-                          0,
-                          sender.value,
-                          0);
+    [self.effectsModel changeReverbValue:sender.value];
+    
+}
+
+- (IBAction)addLowpass:(UISlider *)sender {
+    
+    [self.effectsModel changeLowpassValue:powf(10.0, sender.value)];
+    
+}
+
+- (IBAction)changePitch:(UISlider *)sender {
+    
+    [self.effectsModel changePitchWithPitch:sender.value];
     
 }
 
@@ -201,6 +179,7 @@
 }
 
 #pragma mark - BLE Delegate
+
 -(void) bleDidConnect
 {
     NSLog(@"Connect to BLE device successfully. YO!");
@@ -256,21 +235,13 @@
                 float maxSliderValue = self.reverbSlider.maximumValue;
                 if(nextSliderValue <= maxSliderValue){
                     [self.reverbSlider setValue:nextSliderValue animated:YES];
-                    AudioUnitSetParameter(_reverb.audioUnit,
-                                          kReverb2Param_DryWetMix,
-                                          kAudioUnitScope_Global,
-                                          0,
-                                          nextSliderValue,
-                                          0);
+                    [self.effectsModel changeReverbValue:nextSliderValue];
+
                 }
                 else {
                     [self.reverbSlider setValue:maxSliderValue animated:YES];
-                    AudioUnitSetParameter(_reverb.audioUnit,
-                                          kReverb2Param_DryWetMix,
-                                          kAudioUnitScope_Global,
-                                          0,
-                                          maxSliderValue,
-                                          0);
+                    [self.effectsModel changeReverbValue:maxSliderValue];
+
                 }
             }
             else if(Data == 20){
@@ -279,21 +250,13 @@
                 float minSliderValue = self.reverbSlider.minimumValue;
                 if(nextSliderValue >= minSliderValue){
                     [self.reverbSlider setValue:nextSliderValue animated:YES];
-                    AudioUnitSetParameter(_reverb.audioUnit,
-                                          kReverb2Param_DryWetMix,
-                                          kAudioUnitScope_Global,
-                                          0,
-                                          nextSliderValue,
-                                          0);
+                    [self.effectsModel changeReverbValue:nextSliderValue];
+
                 }
                 else {
                     [self.reverbSlider setValue:minSliderValue animated:YES];
-                    AudioUnitSetParameter(_reverb.audioUnit,
-                                          kReverb2Param_DryWetMix,
-                                          kAudioUnitScope_Global,
-                                          0,
-                                          minSliderValue,
-                                          0);
+                    [self.effectsModel changeReverbValue:minSliderValue];
+
                 }
             }
             break;

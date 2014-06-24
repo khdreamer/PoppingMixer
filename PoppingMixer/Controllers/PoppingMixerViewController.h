@@ -13,9 +13,13 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *touchMeButton;
 @property (weak, nonatomic) IBOutlet UISlider *reverbSlider;
+@property (weak, nonatomic) IBOutlet UISlider *lowpassSlider;
 @property (strong, nonatomic) BLE* ble;
 
 - (IBAction)addBeat:(id)sender;
+- (IBAction)playBackground:(id)sender;
 - (IBAction)applyReverb:(UISlider *)sender;
+- (IBAction)addLowpass:(UISlider *)sender;
+- (IBAction)changePitch:(UISlider *)sender;
 
 @end
