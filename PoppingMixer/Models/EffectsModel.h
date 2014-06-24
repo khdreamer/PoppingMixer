@@ -20,6 +20,8 @@
 
 - (void)changeReverbValue:(float)value;
 - (void)changeLowpassValue:(float)value;
-- (void)changePitchWithPitch:(float)value;
+- (void)changePitchValue:(float)value;
+- (void)changeDelayValue:(float)value;
+- (void)changeHighpassValue:(float)value;
 
 @end

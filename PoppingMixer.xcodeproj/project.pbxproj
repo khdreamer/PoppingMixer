@@ -18,6 +18,7 @@
 		1C511FEB1944A2F50031764C /* track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C511FEA1944A2F50031764C /* track.mp3 */; };
 		1C511FFA1944A4170031764C /* libTheAmazingAudioEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C511FF71944A4060031764C /* libTheAmazingAudioEngine.a */; };
 		1C67AC0119593EA8005012F1 /* EffectsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C67AC0019593EA8005012F1 /* EffectsModel.m */; };
+		1C67AC041959B4AC005012F1 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C67AC021959B4AC005012F1 /* Main_iPad.storyboard */; };
 		1C69407F194439F30059F643 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C69407E194439F30059F643 /* Accelerate.framework */; };
 		1CF0EDBF193D85840001EE68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDBE193D85840001EE68 /* Foundation.framework */; };
 		1CF0EDC1193D85840001EE68 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDC0193D85840001EE68 /* CoreGraphics.framework */; };
@@ -26,7 +27,6 @@
 		1CF0EDCB193D85840001EE68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EDCA193D85840001EE68 /* main.m */; };
 		1CF0EDCF193D85840001EE68 /* PoppingMixerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EDCE193D85840001EE68 /* PoppingMixerAppDelegate.m */; };
 		1CF0EDD2193D85840001EE68 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CF0EDD0193D85840001EE68 /* Main_iPhone.storyboard */; };
-		1CF0EDD5193D85840001EE68 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CF0EDD3193D85840001EE68 /* Main_iPad.storyboard */; };
 		1CF0EDDA193D85840001EE68 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CF0EDD9193D85840001EE68 /* Images.xcassets */; };
 		1CF0EDE1193D85840001EE68 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDE0193D85840001EE68 /* XCTest.framework */; };
 		1CF0EDE2193D85840001EE68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF0EDBE193D85840001EE68 /* Foundation.framework */; };
@@ -74,6 +74,7 @@
 		1C511FF21944A4060031764C /* TheAmazingAudioEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TheAmazingAudioEngine.xcodeproj; path = TheAmazingAudioEngine/TheAmazingAudioEngine.xcodeproj; sourceTree = "<group>"; };
 		1C67ABFF19593EA8005012F1 /* EffectsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EffectsModel.h; path = Models/EffectsModel.h; sourceTree = "<group>"; };
 		1C67AC0019593EA8005012F1 /* EffectsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EffectsModel.m; path = Models/EffectsModel.m; sourceTree = "<group>"; };
+		1C67AC031959B4AC005012F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Views/Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		1C69407E194439F30059F643 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		1CF0EDBB193D85840001EE68 /* PoppingMixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoppingMixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CF0EDBE193D85840001EE68 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -86,7 +87,6 @@
 		1CF0EDCD193D85840001EE68 /* PoppingMixerAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PoppingMixerAppDelegate.h; sourceTree = "<group>"; };
 		1CF0EDCE193D85840001EE68 /* PoppingMixerAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoppingMixerAppDelegate.m; sourceTree = "<group>"; };
 		1CF0EDD1193D85840001EE68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		1CF0EDD4193D85840001EE68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		1CF0EDD6193D85840001EE68 /* PoppingMixerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PoppingMixerViewController.h; path = Controllers/PoppingMixerViewController.h; sourceTree = "<group>"; };
 		1CF0EDD7193D85840001EE68 /* PoppingMixerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PoppingMixerViewController.m; path = Controllers/PoppingMixerViewController.m; sourceTree = "<group>"; };
 		1CF0EDD9193D85840001EE68 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				1CF0EDD0193D85840001EE68 /* Main_iPhone.storyboard */,
-				1CF0EDD3193D85840001EE68 /* Main_iPad.storyboard */,
+				1C67AC021959B4AC005012F1 /* Main_iPad.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -367,9 +367,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C1B15D21943446C0099E920 /* HS R8 Drums.sf2 in Resources */,
-				1CF0EDD5193D85840001EE68 /* Main_iPad.storyboard in Resources */,
 				1C511FEB1944A2F50031764C /* track.mp3 in Resources */,
 				1CF0EDDA193D85840001EE68 /* Images.xcassets in Resources */,
+				1C67AC041959B4AC005012F1 /* Main_iPad.storyboard in Resources */,
 				1CF0EDD2193D85840001EE68 /* Main_iPhone.storyboard in Resources */,
 				1CF0EDC9193D85840001EE68 /* InfoPlist.strings in Resources */,
 			);
@@ -423,6 +423,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1C67AC021959B4AC005012F1 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C67AC031959B4AC005012F1 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
 		1CF0EDC7193D85840001EE68 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -437,15 +445,6 @@
 				1CF0EDD1193D85840001EE68 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			path = Views;
-			sourceTree = "<group>";
-		};
-		1CF0EDD3193D85840001EE68 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1CF0EDD4193D85840001EE68 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			path = Views;
 			sourceTree = "<group>";
 		};

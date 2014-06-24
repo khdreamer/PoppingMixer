@@ -139,8 +139,20 @@
 
 - (IBAction)changePitch:(UISlider *)sender {
     
-    [self.effectsModel changePitchWithPitch:sender.value];
+    [self.effectsModel changePitchValue:sender.value];
     
+}
+
+- (IBAction)changeDelay:(UISlider *)sender {
+    
+    [self.effectsModel changeDelayValue:sender.value];
+    
+}
+
+- (IBAction)addHighPass:(UISlider *)sender {
+    
+    [self.effectsModel changeHighpassValue:powf(10.0, sender.value)];
+
 }
 
 #pragma mark - BLE

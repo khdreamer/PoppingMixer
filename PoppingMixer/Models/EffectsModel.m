@@ -16,8 +16,10 @@
 // effects
 @property (nonatomic, strong) AEAudioUnitFilter *reverb;
 @property (nonatomic, strong) AEAudioUnitFilter *lowpass;
+@property (nonatomic, strong) AEAudioUnitFilter *highpass;
 @property (nonatomic, strong) AEAudioUnitFilter *changePitch;
 @property (nonatomic, strong) AEAudioUnitFilter *changeSpeed;
+@property (nonatomic, strong) AEAudioUnitFilter *delay;
 
 // basis
 @property (nonatomic, strong) AEAudioFilePlayer *background;
@@ -83,6 +85,8 @@
     [self addReverb:0];
     [self addLowpass:100000];
     [self addPitchShift:1];
+    [self addDelay:0];
+    [self addHighpass:1];
 
 }
 
@@ -134,10 +138,31 @@
     
 }
 
+- (void)addHighpass:(float)value {
+    
+    AudioComponentDescription component = AEAudioComponentDescriptionMake(kAudioUnitManufacturer_Apple,
+                                                                          kAudioUnitType_Effect,
+                                                                          kAudioUnitSubType_HighPassFilter);
+    NSError *error = NULL;
+    self.highpass = [[AEAudioUnitFilter alloc]
+                    initWithComponentDescription:component
+                    audioController:_audioController
+                    error:&error];
+    AudioUnitSetParameter(_highpass.audioUnit,
+                          kHipassParam_CutoffFrequency,
+                          kAudioUnitScope_Global,
+                          0,
+                          value,
+                          0);
+    if ( !_highpass ) {
+        // Report error
+    }
+    [self.audioController addFilter:self.highpass];
+    
+}
 
 - (void)addPitchShift:(float)value {
     
-    // adjust pitch
     AudioComponentDescription component = AEAudioComponentDescriptionMake(kAudioUnitManufacturer_Apple,
                                                                           kAudioUnitType_Effect,
                                                                           kAudioUnitSubType_NewTimePitch);
@@ -160,6 +185,40 @@
     
 }
 
+- (void)addDelay:(float)value {
+
+    AudioComponentDescription component = AEAudioComponentDescriptionMake(kAudioUnitManufacturer_Apple,
+                                                                          kAudioUnitType_Effect,
+                                                                          kAudioUnitSubType_Delay);
+    NSError *error = NULL;
+    self.delay = [[AEAudioUnitFilter alloc]
+                    initWithComponentDescription:component
+                    audioController:_audioController
+                    error:&error];
+    AudioUnitSetParameter(_delay.audioUnit,
+                          kDelayParam_DelayTime,
+                          kAudioUnitScope_Global,
+                          0,
+                          0,
+                          0);
+    AudioUnitSetParameter(_delay.audioUnit,
+                          kDelayParam_Feedback,
+                          kAudioUnitScope_Global,
+                          0,
+                          50,
+                          0);
+    AudioUnitSetParameter(_delay.audioUnit,
+                          kDelayParam_WetDryMix,
+                          kAudioUnitScope_Global,
+                          0,
+                          50,
+                          0);
+    if ( !_delay ) {
+        // Report error
+    }
+    [self.audioController addFilter:self.delay];
+
+}
 
 #pragma change value
 
@@ -185,7 +244,18 @@
     
 }
 
-- (void)changePitchWithPitch:(float)value {
+- (void)changeHighpassValue:(float)value {
+    
+    AudioUnitSetParameter(_highpass.audioUnit,
+                          kHipassParam_CutoffFrequency,
+                          kAudioUnitScope_Global,
+                          0,
+                          value,
+                          0);
+    
+}
+
+- (void)changePitchValue:(float)value {
     
     AudioUnitSetParameter(_changePitch.audioUnit,
                           kNewTimePitchParam_Pitch,
@@ -194,6 +264,17 @@
                           value,
                           0);
     
+}
+
+- (void)changeDelayValue:(float)value {
+
+    AudioUnitSetParameter(_delay.audioUnit,
+                          kDelayParam_DelayTime,
+                          kAudioUnitScope_Global,
+                          0,
+                          value,
+                          0);
+
 }
 
 @end
