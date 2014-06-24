@@ -14,6 +14,8 @@
 		<string>https://github.com/khdreamer/PoppingMixer.git</string>
 		<key>5C497433-4B3D-4A47-963F-F2252F1DB38F</key>
 		<string>https://github.com/hstrey/BLEShieldConnect.git</string>
+		<key>E6E1113C-BF3C-4713-B7F0-EE28A0EDD403</key>
+		<string>https://github.com/RedBearLab/iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>PoppingMixer.xcodeproj/project.xcworkspace</string>
@@ -23,6 +25,8 @@
 		<string>../..</string>
 		<key>5C497433-4B3D-4A47-963F-F2252F1DB38F</key>
 		<string>../../../BLEShieldConnect</string>
+		<key>E6E1113C-BF3C-4713-B7F0-EE28A0EDD403</key>
+		<string>../../../iOS</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/khdreamer/PoppingMixer.git</string>
@@ -39,6 +43,14 @@
 			<string>5C497433-4B3D-4A47-963F-F2252F1DB38F</string>
 			<key>IDESourceControlWCCName</key>
 			<string>BLEShieldConnect</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E6E1113C-BF3C-4713-B7F0-EE28A0EDD403</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

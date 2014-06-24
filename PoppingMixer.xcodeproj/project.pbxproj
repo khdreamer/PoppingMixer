@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		188D8CC71945B0A50068B51E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188D8CC61945B0A50068B51E /* CoreBluetooth.framework */; };
-		188D8CC91945DE3D0068B51E /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D8CC41945B04C0068B51E /* BLE.m */; };
+		188D8CCE194945B20068B51E /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D8CCC1949459A0068B51E /* BLE.m */; };
 		1C1B15C119432D550099E920 /* AudioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B15C019432D550099E920 /* AudioModel.m */; };
 		1C1B15C4194330C60099E920 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B15C3194330C60099E920 /* AudioToolbox.framework */; };
 		1C1B15C6194330E00099E920 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B15C5194330E00099E920 /* AVFoundation.framework */; };
@@ -59,10 +59,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		188D8CC31945B04C0068B51E /* BLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
-		188D8CC41945B04C0068B51E /* BLE.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
-		188D8CC51945B04C0068B51E /* BLEDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
 		188D8CC61945B0A50068B51E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		188D8CCB1949459A0068B51E /* BLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
+		188D8CCC1949459A0068B51E /* BLE.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
+		188D8CCD1949459A0068B51E /* BLEDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
 		1C1B15BF19432D550099E920 /* AudioModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioModel.h; path = Models/AudioModel.h; sourceTree = "<group>"; };
 		1C1B15C019432D550099E920 /* AudioModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioModel.m; path = Models/AudioModel.m; sourceTree = "<group>"; };
 		1C1B15C3194330C60099E920 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -124,15 +124,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		188D8CC21945B04C0068B51E /* BLE_Framework */ = {
+		188D8CCA1949459A0068B51E /* BLE */ = {
 			isa = PBXGroup;
 			children = (
-				188D8CC31945B04C0068B51E /* BLE.h */,
-				188D8CC41945B04C0068B51E /* BLE.m */,
-				188D8CC51945B04C0068B51E /* BLEDefines.h */,
+				188D8CCB1949459A0068B51E /* BLE.h */,
+				188D8CCC1949459A0068B51E /* BLE.m */,
+				188D8CCD1949459A0068B51E /* BLEDefines.h */,
 			);
-			name = BLE_Framework;
-			path = ../BLEShieldConnect/BLE_Framework;
+			path = BLE;
 			sourceTree = "<group>";
 		};
 		1C511FF31944A4060031764C /* Products */ = {
@@ -165,7 +164,6 @@
 		1CF0EDBD193D85840001EE68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				188D8CC21945B04C0068B51E /* BLE_Framework */,
 				188D8CC61945B0A50068B51E /* CoreBluetooth.framework */,
 				1C69407E194439F30059F643 /* Accelerate.framework */,
 				1C1B15C7194330EF0099E920 /* CoreAudio.framework */,
@@ -253,6 +251,7 @@
 		1CF0EDF9193D8D360001EE68 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				188D8CCA1949459A0068B51E /* BLE */,
 				1C511FF21944A4060031764C /* TheAmazingAudioEngine.xcodeproj */,
 				1C1B15D11943446C0099E920 /* HS R8 Drums.sf2 */,
 				1C511FEA1944A2F50031764C /* track.mp3 */,
@@ -378,7 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				188D8CC91945DE3D0068B51E /* BLE.m in Sources */,
+				188D8CCE194945B20068B51E /* BLE.m in Sources */,
 				1C511FDF19449FAF0031764C /* PoppingMixerViewController.m in Sources */,
 				1CF0EDCF193D85840001EE68 /* PoppingMixerAppDelegate.m in Sources */,
 				1CF0EDCB193D85840001EE68 /* main.m in Sources */,

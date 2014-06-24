@@ -44,20 +44,20 @@
     
     self.sensorState = 0;
     
-    self.RSSIValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 100, 150, 150)];
+    self.RSSIValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 100, 150, 150)];
     self.RSSIValueLabel.text = @"RSSIValue null";
     self.RSSIValueLabel.font = [UIFont fontWithName:@"ProximaNovaSemibold" size:20];
-    [self.view addSubview:self.RSSIValueLabel];
+//    [self.view addSubview:self.RSSIValueLabel];
 
-    self.sensorStateLabel = [[UILabel alloc] initWithFrame:CGRectMake(300, 100, 150, 150)];
+    self.sensorStateLabel = [[UILabel alloc] initWithFrame:CGRectMake(550, 0, 150, 150)];
     self.sensorStateLabel.text = @"sensorState null";
-    self.sensorStateLabel.font = [UIFont fontWithName:@"ProximaNovaSemibold" size:20];
+    self.sensorStateLabel.font = [UIFont fontWithName:@"ProximaNovaSemibold" size:30];
     [self.view addSubview:self.sensorStateLabel];
     
-    self.packetSizeLabel = [[UILabel alloc] initWithFrame:CGRectMake(550, 100, 150, 150)];
+    self.packetSizeLabel = [[UILabel alloc] initWithFrame:CGRectMake(580, 100, 150, 150)];
     self.packetSizeLabel.text = @"packetSize null";
     self.packetSizeLabel.font = [UIFont fontWithName:@"ProximaNovaSemibold" size:20];
-    [self.view addSubview:self.packetSizeLabel];
+//    [self.view addSubview:self.packetSizeLabel];
     
     NSLog(@"slider max: %f, min: %f", self.reverbSlider.maximumValue, self.reverbSlider.minimumValue);
 
@@ -67,7 +67,8 @@
 {
     NSLog(@"ViewController will disappear");
     if (self.ble.activePeripheral)
-        if(self.ble.activePeripheral.isConnected)
+//        if(self.ble.activePeripheral.isConnected)
+        if(self.ble.activePeripheral.state == CBPeripheralStateConnected)
         {
             //send BLE shield "0" to turn off transmission
             UInt8 buf[1] = {0x30};
@@ -176,7 +177,8 @@
 - (void) scanPeripheral
 {
     if (self.ble.activePeripheral)
-        if(self.ble.activePeripheral.isConnected)
+//        if(self.ble.activePeripheral.isConnected)
+        if(self.ble.activePeripheral.state == CBPeripheralStateConnected)
         {
             [[self.ble CM] cancelPeripheralConnection:[self.ble activePeripheral]];
             return;
@@ -213,6 +215,8 @@
 -(void) bleDidDisconnect
 {
     NSLog(@"Disconnect from BLE device successfully. BOO...");
+    self.sensorState = 0;
+    self.sensorStateLabel.text = @"Disconnected";
 }
 
 -(void) bleDidUpdateRSSI:(NSNumber *) rssi
