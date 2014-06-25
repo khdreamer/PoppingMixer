@@ -112,6 +112,17 @@
 
 #pragma mark - Effects
 
+- (IBAction)toggleChannel:(UISwitch *)sender {
+
+    // 0 ===> instrumental
+    // 1 ===> acapella
+    int channelId = sender.tag % 2;
+    int effectId = (int)(sender.tag / 2);
+    NSLog(@"%d", sender.tag);
+    [self.effectsModel turnChannel:channelId onOrOff:sender.on forEffect:effectId];
+    
+}
+
 - (IBAction)addBeat:(id)sender {
     
     NSLog(@"add beat");
@@ -143,10 +154,24 @@
     
 }
 
-- (IBAction)changeDelay:(UISlider *)sender {
+- (IBAction)changeDelayWet:(UISlider *)sender {
+
+    [self.effectsModel changeDelayWet:sender.value];
+
+}
+
+- (IBAction)changeDelayTime:(UISlider *)sender {
+
+    int value = floor(sender.value);
+    [self.effectsModel changeDelayTime:value*1.5];
+    self.delayTimeSlider.value = value;
     
-    [self.effectsModel changeDelayValue:sender.value];
+}
+
+- (IBAction)changeDelayFeedback:(UISlider *)sender {
     
+    [self.effectsModel changeDelayFeedback:sender.value];
+
 }
 
 - (IBAction)addHighPass:(UISlider *)sender {
