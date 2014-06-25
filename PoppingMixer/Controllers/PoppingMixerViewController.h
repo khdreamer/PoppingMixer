@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *delaySlider;
 @property (weak, nonatomic) IBOutlet UISlider *highpassSlider;
 @property (strong, nonatomic) BLE* ble;
+@property (strong, nonatomic) BLE* ble2;
 
 
 - (IBAction)connect:(id)sender;

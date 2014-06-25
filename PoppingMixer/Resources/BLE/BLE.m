@@ -16,6 +16,10 @@
 #import "BLE.h"
 #import "BLEDefines.h"
 
+@interface BLE ()
+@property (nonatomic) int ID;
+@end
+
 @implementation BLE
 
 @synthesize delegate;
@@ -25,6 +29,18 @@
 
 static bool isConnected = false;
 static int rssi = 0;
+
+
+///////////
+-(id)initWithID:(int) ID_
+{
+    self = [super init];
+    if (self) {
+        self.ID = ID_;
+    }
+    return self;
+}
+///////////
 
 -(void) readRSSI
 {
@@ -205,7 +221,9 @@ static int rssi = 0;
 {
     done = false;
 
-    [[self delegate] bleDidDisconnect];
+//    [[self delegate] bleDidDisconnect];
+    [[self delegate] bleDidDisconnectForID: self.ID];
+
     
     isConnected = false;
 }
@@ -480,7 +498,8 @@ static bool done = false;
                 if (!done)
                 {
                     [self enableReadNotification:activePeripheral];
-                    [[self delegate] bleDidConnect];
+//                    [[self delegate] bleDidConnect];
+                    [[self delegate] bleDidConnectForID:self.ID];
                     isConnected = true;
                     done = true;
                 }
@@ -547,7 +566,8 @@ static bool done = false;
                 
                 if (len >= 64)
                 {
-                    [[self delegate] bleDidReceiveData:buf length:len];
+//                    [[self delegate] bleDidReceiveData:buf length:len];
+                    [[self delegate] bleDidReceiveData:buf length:len ForID: self.ID];
                     len = 0;
                 }
             }
@@ -556,7 +576,8 @@ static bool done = false;
                 memcpy(&buf[len], data, data_len);
                 len += data_len;
                 
-                [[self delegate] bleDidReceiveData:buf length:len];
+//                [[self delegate] bleDidReceiveData:buf length:len];
+                [[self delegate] bleDidReceiveData:buf length:len ForID: self.ID];
                 len = 0;
             }
         }
@@ -575,7 +596,9 @@ static bool done = false;
     if (rssi != peripheral.RSSI.intValue)
     {
         rssi = peripheral.RSSI.intValue;
-        [[self delegate] bleDidUpdateRSSI:activePeripheral.RSSI];
+//        [[self delegate] bleDidUpdateRSSI:activePeripheral.RSSI];
+        [[self delegate] bleDidUpdateRSSI:activePeripheral.RSSI ForID: self.ID];
+
     }
 }
 

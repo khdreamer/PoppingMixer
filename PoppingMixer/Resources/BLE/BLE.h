@@ -20,10 +20,15 @@
 
 @protocol BLEDelegate
 @optional
--(void) bleDidConnect;
--(void) bleDidDisconnect;
--(void) bleDidUpdateRSSI:(NSNumber *) rssi;
--(void) bleDidReceiveData:(unsigned char *) data length:(int) length;
+//-(void) bleDidConnect;
+//-(void) bleDidDisconnect;
+//-(void) bleDidUpdateRSSI:(NSNumber *) rssi;
+//-(void) bleDidReceiveData:(unsigned char *) data length:(int) length;
+-(void) bleDidConnectForID:(int) ID;
+-(void) bleDidDisconnectForID:(int) ID;
+-(void) bleDidUpdateRSSI:(NSNumber *) rssi ForID:(int) ID;
+-(void) bleDidReceiveData:(unsigned char *) data length:(int) length ForID:(int) ID;
+
 @required
 @end
 
@@ -35,6 +40,8 @@
 @property (strong, nonatomic) NSMutableArray *peripherals;
 @property (strong, nonatomic) CBCentralManager *CM;
 @property (strong, nonatomic) CBPeripheral *activePeripheral;
+
+-(id)initWithID:(int) ID_;
 
 -(void) enableReadNotification:(CBPeripheral *)p;
 -(void) read;
