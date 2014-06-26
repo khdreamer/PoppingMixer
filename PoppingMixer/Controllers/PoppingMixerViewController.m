@@ -155,7 +155,7 @@
 - (IBAction)changeDelayTime:(UISlider *)sender {
     
     int value = floor(sender.value);
-    [self.effectsModel changeDelayTime:value*1.5];
+    [self.effectsModel changeDelayTime:value*0.5];
     self.delayTimeSlider.value = value;
     
 }

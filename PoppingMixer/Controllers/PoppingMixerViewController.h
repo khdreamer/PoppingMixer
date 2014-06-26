@@ -20,8 +20,6 @@
 @property (weak, nonatomic) IBOutlet UISlider *delayTimeSlider;
 @property (weak, nonatomic) IBOutlet UISlider *highpassSlider;
 @property (strong, nonatomic) BLE* ble;
-@property (strong, nonatomic) BLE* ble2;
-@property (weak, nonatomic) IBOutlet UIButton *instrumentalButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *switchFunctionButton;
 @property (nonatomic) int function;
@@ -39,7 +37,6 @@
 - (IBAction)connect:(id)sender;
 
 - (IBAction)toggleChannel:(UISwitch *)sender;
-- (IBAction)selectChannel:(UIButton *)sender;
 
 - (IBAction)addBeat:(id)sender;
 - (IBAction)playBackground:(id)sender;
