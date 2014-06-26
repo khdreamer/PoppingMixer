@@ -10,18 +10,21 @@
 
 @interface EffectsModel : NSObject
 
-// initialize
+// initialize and bsic methods
 
 - (void)addAudioController;
 - (void)togglePlaying;
 - (void)initEffects;
+- (void)turnChannel:(int)channelId onOrOff:(BOOL)isOn forEffect:(int)effectId;
 
 // change value
 
 - (void)changeReverbValue:(float)value;
 - (void)changeLowpassValue:(float)value;
 - (void)changePitchValue:(float)value;
-- (void)changeDelayValue:(float)value;
 - (void)changeHighpassValue:(float)value;
+- (void)changeDelayWet:(float)value;
+- (void)changeDelayFeedback:(float)value;
+- (void)changeDelayTime:(float)value;
 
 @end

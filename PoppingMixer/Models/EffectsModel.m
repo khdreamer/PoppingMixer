@@ -14,19 +14,31 @@
 @property (nonatomic) BOOL musicAdded;
 
 // effects
-@property (nonatomic, strong) AEAudioUnitFilter *reverb;
-@property (nonatomic, strong) AEAudioUnitFilter *lowpass;
-@property (nonatomic, strong) AEAudioUnitFilter *highpass;
-@property (nonatomic, strong) AEAudioUnitFilter *changePitch;
-@property (nonatomic, strong) AEAudioUnitFilter *changeSpeed;
-@property (nonatomic, strong) AEAudioUnitFilter *delay;
+@property (nonatomic, strong) NSMutableArray *effects;
+//@property (nonatomic, strong) AEAudioUnitFilter *reverb;
+//@property (nonatomic, strong) AEAudioUnitFilter *lowpass;
+//@property (nonatomic, strong) AEAudioUnitFilter *highpass;
+//@property (nonatomic, strong) AEAudioUnitFilter *changePitch;
+//@property (nonatomic, strong) AEAudioUnitFilter *delay;
 
 // basis
-@property (nonatomic, strong) AEAudioFilePlayer *instrumental;
-@property (nonatomic, strong) AEAudioFilePlayer *acapella;
 @property (nonatomic, strong) AEAudioController *audioController;
+@property (nonatomic, strong) NSMutableArray *channels;
+//@property (nonatomic, strong) NSMutableArray *isChannelSelected;
 
 @end
+
+/**********************************/
+/**********************************/
+/**********************************
+         Reverb      0
+         Lowpass     1
+         Highpass    2
+         PitchShift  3
+         Delay       4
+***********************************/
+/**********************************/
+/**********************************/
 
 @implementation EffectsModel
 
@@ -38,6 +50,7 @@
     }
     
     _musicAdded = NO;
+    _effects = [NSMutableArray array];
     
     return self;
     
@@ -61,18 +74,40 @@
 - (void)playMusic {
     
     NSURL *instrumentalMusic = [[NSBundle mainBundle] URLForResource:@"lies_and_misery_instrumental" withExtension:@"aif"];
-    self.instrumental = [AEAudioFilePlayer audioFilePlayerWithURL:instrumentalMusic
+    AEAudioFilePlayer *instrumental = [AEAudioFilePlayer audioFilePlayerWithURL:instrumentalMusic
                                                 audioController:_audioController
                                                           error:NULL];
     NSURL *acapellaMusic = [[NSBundle mainBundle] URLForResource:@"lies_and_misery_acapella" withExtension:@"aif"];
-    self.acapella = [AEAudioFilePlayer audioFilePlayerWithURL:acapellaMusic
+    AEAudioFilePlayer *acapella = [AEAudioFilePlayer audioFilePlayerWithURL:acapellaMusic
                                                   audioController:_audioController
                                                             error:NULL];
-    [_audioController addChannels:@[_instrumental, _acapella]];
+    self.channels = [NSMutableArray arrayWithObjects:instrumental, acapella, nil];
+    AEAudioUnitFilter *c1 = _channels[0];
+    AEAudioUnitFilter *c2 = _channels[1];
+//    [_audioController addChannels:@[_channels[0], _channels[1]]];
+    [_audioController addChannels:@[c1, c2]];
     
 }
 
-#pragma init fx
+- (void)turnChannel:(int)channelId onOrOff:(BOOL)isOn forEffect:(int)effectId {
+
+    NSLog(@"%@", self.effects);
+    
+    AEAudioUnitFilter *effect = _effects[effectId];
+    AEAudioUnitChannel *channel = _channels[channelId];
+    
+    if(isOn){
+        
+        [_audioController addFilter:effect toChannel:channel];
+        
+    }
+    else{
+
+        [_audioController removeFilter:effect fromChannel:channel];
+    
+    }
+
+}
 
 - (void)togglePlaying {
 
@@ -84,20 +119,23 @@
     }
     else {
     
-        if(self.instrumental.channelIsPlaying) self.instrumental.channelIsPlaying = NO;
-        else self.instrumental.channelIsPlaying = YES;
+        for (AEAudioFilePlayer *channel in self.channels) {
+            channel.channelIsPlaying = !channel.channelIsPlaying;
+        }
     
     }
 
 }
 
+#pragma init fx
+
 - (void)initEffects {
 
     [self addReverb:0];
     [self addLowpass:100000];
+    [self addHighpass:10];
     [self addPitchShift:1];
     [self addDelay:0];
-    [self addHighpass:1];
 
 }
 
@@ -107,21 +145,20 @@
                                                                           kAudioUnitType_Effect,
                                                                           kAudioUnitSubType_Reverb2);
     NSError *error = NULL;
-    self.reverb = [[AEAudioUnitFilter alloc]
-                   initWithComponentDescription:component
-                   audioController:_audioController
-                   error:&error];
-    AudioUnitSetParameter(_reverb.audioUnit,
+    AEAudioUnitFilter *reverb = [[AEAudioUnitFilter alloc]
+                                 initWithComponentDescription:component
+                                 audioController:_audioController
+                                 error:&error];
+    AudioUnitSetParameter(reverb.audioUnit,
                           kReverb2Param_DryWetMix,
                           kAudioUnitScope_Global,
                           0,
                           value,
                           0);
-    if ( !_reverb ) {
+    if ( !reverb ) {
         // Report error
     }
-    [self.audioController addFilter:self.reverb];
-    
+    [self.effects addObject:reverb];
     
 }
 
@@ -131,21 +168,20 @@
                                                                           kAudioUnitType_Effect,
                                                                           kAudioUnitSubType_LowPassFilter);
     NSError *error = NULL;
-    self.lowpass = [[AEAudioUnitFilter alloc]
+    AEAudioUnitFilter *lowpass = [[AEAudioUnitFilter alloc]
                    initWithComponentDescription:component
                    audioController:_audioController
                    error:&error];
-    AudioUnitSetParameter(_lowpass.audioUnit,
+    AudioUnitSetParameter(lowpass.audioUnit,
                           kLowPassParam_CutoffFrequency,
                           kAudioUnitScope_Global,
                           0,
                           value,
                           0);
-    if ( !_lowpass ) {
+    if ( !lowpass ) {
         // Report error
     }
-    [self.audioController addFilter:self.lowpass];
-    
+    [self.effects addObject:lowpass];
     
 }
 
@@ -155,20 +191,20 @@
                                                                           kAudioUnitType_Effect,
                                                                           kAudioUnitSubType_HighPassFilter);
     NSError *error = NULL;
-    self.highpass = [[AEAudioUnitFilter alloc]
+    AEAudioUnitFilter *highpass = [[AEAudioUnitFilter alloc]
                     initWithComponentDescription:component
                     audioController:_audioController
                     error:&error];
-    AudioUnitSetParameter(_highpass.audioUnit,
+    AudioUnitSetParameter(highpass.audioUnit,
                           kHipassParam_CutoffFrequency,
                           kAudioUnitScope_Global,
                           0,
                           value,
                           0);
-    if ( !_highpass ) {
+    if ( !highpass ) {
         // Report error
     }
-    [self.audioController addFilter:self.highpass];
+    [self.effects addObject:highpass];
     
 }
 
@@ -178,21 +214,21 @@
                                                                           kAudioUnitType_Effect,
                                                                           kAudioUnitSubType_NewTimePitch);
     NSError *error = NULL;
-    self.changePitch = [[AEAudioUnitFilter alloc]
+    AEAudioUnitFilter *changePitch = [[AEAudioUnitFilter alloc]
                       initWithComponentDescription:component
                       audioController:_audioController
                       error:&error];
-    AudioUnitSetParameter(_changePitch.audioUnit,
+    AudioUnitSetParameter(changePitch.audioUnit,
                           kNewTimePitchParam_Pitch,
                           kAudioUnitScope_Global,
                           0,
                           value,
                           0);
     
-    if ( !_changePitch ) {
+    if ( !changePitch ) {
         // Report error
     }
-    [self.audioController addFilter:self.changePitch];
+    [self.effects addObject:changePitch];
     
 }
 
@@ -202,32 +238,32 @@
                                                                           kAudioUnitType_Effect,
                                                                           kAudioUnitSubType_Delay);
     NSError *error = NULL;
-    self.delay = [[AEAudioUnitFilter alloc]
+    AEAudioUnitFilter *delay = [[AEAudioUnitFilter alloc]
                     initWithComponentDescription:component
                     audioController:_audioController
                     error:&error];
-    AudioUnitSetParameter(_delay.audioUnit,
+    AudioUnitSetParameter(delay.audioUnit,
                           kDelayParam_DelayTime,
                           kAudioUnitScope_Global,
                           0,
-                          0,
+                          1.5,
                           0);
-    AudioUnitSetParameter(_delay.audioUnit,
+    AudioUnitSetParameter(delay.audioUnit,
                           kDelayParam_Feedback,
                           kAudioUnitScope_Global,
                           0,
-                          50,
+                          20,
                           0);
-    AudioUnitSetParameter(_delay.audioUnit,
+    AudioUnitSetParameter(delay.audioUnit,
                           kDelayParam_WetDryMix,
                           kAudioUnitScope_Global,
                           0,
-                          50,
+                          0,
                           0);
-    if ( !_delay ) {
+    if ( !delay ) {
         // Report error
     }
-    [self.audioController addFilter:self.delay];
+    [self.effects addObject:delay];
 
 }
 
@@ -235,7 +271,8 @@
 
 - (void)changeReverbValue:(float)value {
 
-    AudioUnitSetParameter(_reverb.audioUnit,
+    AEAudioUnitFilter *reverb = [self.effects objectAtIndex:0];
+    AudioUnitSetParameter(reverb.audioUnit,
                           kReverb2Param_DryWetMix,
                           kAudioUnitScope_Global,
                           0,
@@ -246,7 +283,8 @@
 
 - (void)changeLowpassValue:(float)value {
     
-    AudioUnitSetParameter(_lowpass.audioUnit,
+    AEAudioUnitFilter *lowpass = [self.effects objectAtIndex:1];
+    AudioUnitSetParameter(lowpass.audioUnit,
                           kLowPassParam_CutoffFrequency,
                           kAudioUnitScope_Global,
                           0,
@@ -257,7 +295,8 @@
 
 - (void)changeHighpassValue:(float)value {
     
-    AudioUnitSetParameter(_highpass.audioUnit,
+    AEAudioUnitFilter *highpass = [self.effects objectAtIndex:2];
+    AudioUnitSetParameter(highpass.audioUnit,
                           kHipassParam_CutoffFrequency,
                           kAudioUnitScope_Global,
                           0,
@@ -268,7 +307,8 @@
 
 - (void)changePitchValue:(float)value {
     
-    AudioUnitSetParameter(_changePitch.audioUnit,
+    AEAudioUnitFilter *pitchShift = [self.effects objectAtIndex:3];
+    AudioUnitSetParameter(pitchShift.audioUnit,
                           kNewTimePitchParam_Pitch,
                           kAudioUnitScope_Global,
                           0,
@@ -277,15 +317,40 @@
     
 }
 
-- (void)changeDelayValue:(float)value {
+- (void)changeDelayWet:(float)value {
 
-    AudioUnitSetParameter(_delay.audioUnit,
-                          kDelayParam_DelayTime,
+    AEAudioUnitFilter *delay = [self.effects objectAtIndex:4];
+    AudioUnitSetParameter(delay.audioUnit,
+                          kDelayParam_WetDryMix,
                           kAudioUnitScope_Global,
                           0,
                           value,
                           0);
 
 }
+
+- (void)changeDelayTime:(float)value {
+    
+    AEAudioUnitFilter *delay = [self.effects objectAtIndex:4];
+    AudioUnitSetParameter(delay.audioUnit,
+                          kDelayParam_DelayTime,
+                          kAudioUnitScope_Global,
+                          0,
+                          value,
+                          0);
+    
+}
+
+- (void)changeDelayFeedback:(float)value {
+    
+    AEAudioUnitFilter *delay = [self.effects objectAtIndex:4];
+    AudioUnitSetParameter(delay.audioUnit,
+                          kDelayParam_Feedback,
+                          kAudioUnitScope_Global,
+                          0,
+                          value,
+                          0);
+}
+
 
 @end
