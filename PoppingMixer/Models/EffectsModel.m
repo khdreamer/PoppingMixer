@@ -81,6 +81,11 @@
     AEAudioFilePlayer *acapella = [AEAudioFilePlayer audioFilePlayerWithURL:acapellaMusic
                                                   audioController:_audioController
                                                             error:NULL];
+    
+    instrumental.loop = YES;
+    acapella.loop = YES;
+
+    
     self.channels = [NSMutableArray arrayWithObjects:instrumental, acapella, nil];
     AEAudioUnitFilter *c1 = _channels[0];
     AEAudioUnitFilter *c2 = _channels[1];

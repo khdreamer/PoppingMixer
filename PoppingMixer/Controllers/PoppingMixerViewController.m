@@ -16,13 +16,8 @@
 @property (nonatomic, strong) AudioModel *audioModel;
 @property (nonatomic, strong) EffectsModel *effectsModel;
 
-//@property (nonatomic, strong) UILabel *RSSIValueLabel;
 @property (nonatomic, strong) UILabel *sensorStateLabel1;
-@property (nonatomic, strong) UILabel *sensorStateLabel2;
-//@property (nonatomic, strong) UILabel *packetSizeLabel;
-
 @property (nonatomic) int sensorState1;
-@property (nonatomic) int sensorState2;
 
 @end
 
@@ -36,48 +31,32 @@
     [self.ble controlSetup];
     self.ble.delegate = self;
     
-    self.ble2 = [[BLE alloc] initWithID:2];
-    [self.ble2 controlSetup];
-    self.ble2.delegate = self;
-    
-//    NSLog(@"ble.CM.state = %d", self.ble.CM.state);
-//    [self scanPeripheral];
-    
     [self.effectsModel addAudioController];
     [self.effectsModel initEffects];
     
     self.sensorState1 = 0;
-    self.sensorState2 = 0;
+    self.function = 0; //0: Filters
+    self.lockState = 0; //0: locked
     
-//    self.RSSIValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 100, 150, 150)];
-//    self.RSSIValueLabel.text = @"RSSIValue null";
-//    self.RSSIValueLabel.font = [UIFont fontWithName:@"ProximaNovaSemibold" size:20];
-//    [self.view addSubview:self.RSSIValueLabel];
-
+    //    self.RSSIValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 100, 150, 150)];
+    //    self.RSSIValueLabel.text = @"RSSIValue null";
+    //    self.RSSIValueLabel.font = [UIFont fontWithName:@"ProximaNovaSemibold" size:20];
+    //    [self.view addSubview:self.RSSIValueLabel];
+    
     self.sensorStateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 150, 150)];
     self.sensorStateLabel1.text = @"sensorState null";
     self.sensorStateLabel1.font = [UIFont fontWithName:@"ProximaNovaSemibold" size:30];
     [self.view addSubview:self.sensorStateLabel1];
     
-    self.sensorStateLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(550, 0, 150, 150)];
-    self.sensorStateLabel2.text = @"sensorState null";
-    self.sensorStateLabel2.font = [UIFont fontWithName:@"ProximaNovaSemibold" size:30];
-    [self.view addSubview:self.sensorStateLabel2];
-    
-//    self.packetSizeLabel = [[UILabel alloc] initWithFrame:CGRectMake(580, 100, 150, 150)];
-//    self.packetSizeLabel.text = @"packetSize null";
-//    self.packetSizeLabel.font = [UIFont fontWithName:@"ProximaNovaSemibold" size:20];
-//    [self.view addSubview:self.packetSizeLabel];
-    
     NSLog(@"slider max: %f, min: %f", self.reverbSlider.maximumValue, self.reverbSlider.minimumValue);
-
+    
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
     NSLog(@"ViewController will disappear");
     if (self.ble.activePeripheral){
-//        if(self.ble.activePeripheral.isConnected)
+        //        if(self.ble.activePeripheral.isConnected)
         if(self.ble.activePeripheral.state == CBPeripheralStateConnected)
         {
             //send BLE shield "0" to turn off transmission
@@ -87,19 +66,6 @@
             [self.ble write:data];
             // after that cancel connection
             [[self.ble CM] cancelPeripheralConnection:[self.ble activePeripheral]];
-        }
-    }
-    
-    if (self.ble2.activePeripheral){
-        if(self.ble2.activePeripheral.state == CBPeripheralStateConnected)
-        {
-            //send BLE shield "0" to turn off transmission
-            UInt8 buf[1] = {0x30};
-            
-            NSData *data = [[NSData alloc] initWithBytes:buf length:1];
-            [self.ble2 write:data];
-            // after that cancel connection
-            [[self.ble2 CM] cancelPeripheralConnection:[self.ble2 activePeripheral]];
         }
     }
 }
@@ -139,7 +105,7 @@
 #pragma mark - Effects
 
 - (IBAction)toggleChannel:(UISwitch *)sender {
-
+    
     // 0 ===> instrumental
     // 1 ===> acapella
     int channelId = sender.tag % 2;
@@ -181,13 +147,13 @@
 }
 
 - (IBAction)changeDelayWet:(UISlider *)sender {
-
+    
     [self.effectsModel changeDelayWet:sender.value];
-
+    
 }
 
 - (IBAction)changeDelayTime:(UISlider *)sender {
-
+    
     int value = floor(sender.value);
     [self.effectsModel changeDelayTime:value*1.5];
     self.delayTimeSlider.value = value;
@@ -197,13 +163,49 @@
 - (IBAction)changeDelayFeedback:(UISlider *)sender {
     
     [self.effectsModel changeDelayFeedback:sender.value];
+    
+}
 
+- (IBAction)resetPanel:(UIButton *)sender {
+    
+}
+
+- (IBAction)resetSensor:(UIButton *)sender {
+    NSLog(@"reset sensor..");
+    
+    UInt8 buf[1] = {0x15};
+    NSData *data = [[NSData alloc] initWithBytes:buf length:1];
+    [self.ble write:data];
+}
+
+- (IBAction)switchLockState:(id)sender {
+    NSLog(@"switch LockState!");
+    if( self.lockState == 1 ) {
+        self.lockState = 0;
+        [self.lockButton setTitle:@"Locked" forState:UIControlStateNormal];
+    }
+    else {
+        self.lockState = 1;
+        [self.lockButton setTitle:@"Unlocked" forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)switchFunction:(id)sender {
+    NSLog(@"switch Function!");
+    if( self.function == 1 ) {
+        self.function = 0;
+        [self.switchFunctionButton setTitle:@"Filters" forState:UIControlStateNormal];
+    }
+    else {
+        self.function = 1;
+        [self.switchFunctionButton setTitle:@"Delays" forState:UIControlStateNormal];
+    }
 }
 
 - (IBAction)addHighPass:(UISlider *)sender {
     
     [self.effectsModel changeHighpassValue:powf(10.0, sender.value)];
-
+    
 }
 
 #pragma mark - BLE
@@ -211,7 +213,7 @@
 - (IBAction) connect: (id) sender
 {
     NSLog(@"Start scanning for BLE peripherals ...");
-//    NSLog(@"ble.CM.state = %d", self.ble.CM.state);
+    //    NSLog(@"ble.CM.state = %d", self.ble.CM.state);
     [self scanPeripheral];
 }
 
@@ -229,22 +231,9 @@
         self.ble.peripherals = nil;
     }
     
-    if (self.ble2.activePeripheral){
-        if(self.ble2.activePeripheral.state == CBPeripheralStateConnected)
-        {
-            [[self.ble2 CM] cancelPeripheralConnection:[self.ble2 activePeripheral]];
-            return;
-        }
-    }
+    [self.ble findBLEPeripherals:2];
     
-    if (self.ble2.peripherals){
-        self.ble2.peripherals = nil;
-    }
-    
-    [self.ble findBLEPeripherals:5];
-    [self.ble2 findBLEPeripherals:5];
-    
-    [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(connectToBLETimer:) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(connectToBLETimer:) userInfo:nil repeats:NO];
 }
 
 - (void) connectToBLETimer:(NSTimer*) timer
@@ -252,22 +241,6 @@
     if(self.ble.peripherals.count > 0){
         NSLog(@"BLE peripheral found. Connecting...");
         [self.ble connectPeripheral:[self.ble.peripherals objectAtIndex:0]];
-
-        if(self.ble.peripherals.count == 2) {
-            CBPeripheral *p1 = [self.ble.peripherals objectAtIndex:0];
-            CBPeripheral *p2 = [self.ble.peripherals objectAtIndex:1];
-            NSLog(@"ble: identifier 1: %@, identifier 2: %@", [p1.identifier UUIDString], [p2.identifier UUIDString]);
-            
-            if(self.ble2.peripherals.count == 2){
-                CBPeripheral *p3 = [self.ble2.peripherals objectAtIndex:0];
-                CBPeripheral *p4 = [self.ble2.peripherals objectAtIndex:1];
-                NSLog(@"ble2: identifier 1: %@, identifier 2: %@", [p3.identifier UUIDString], [p4.identifier UUIDString]);
-            }
-            
-            NSLog(@"Second BLE peripherals found. Connecting...");
-//            CBPeripheral *p = [self.ble2.peripherals objectAtIndex:0];
-            [self.ble2 connectPeripheral:[self.ble.peripherals objectAtIndex:1]];
-        }
     }
 }
 
@@ -279,39 +252,28 @@
     UInt8 buf[1] = {0x49};
     NSData *data = [[NSData alloc] initWithBytes:buf length:1];
     
-    if(ID == 1) {
-        self.sensorStateLabel1.text = @"initial: IDLE";
-        [self.ble write:data];
-    }
-    else if(ID == 2) {
-        self.sensorStateLabel2.text = @"initial: IDLE";
-        [self.ble2 write:data];
-    }
+    self.sensorStateLabel1.text = @"CHIPMUNK";
+    [self.ble write:data];
 }
 
 -(void) bleDidDisconnectForID:(int)ID
 {
     NSLog(@"Disconnect from BLE device #%d successfully. BOO...", ID);
-    if(ID == 1){
-        self.sensorState1 = 0;
-        self.sensorStateLabel1.text = @"Disconnected";
-    }
-    else if(ID == 2){
-        self.sensorState2 = 0;
-        self.sensorStateLabel2.text = @"Disconnected";
-    }
+    
+    self.sensorState1 = 0;
+    self.sensorStateLabel1.text = @"Disconnected";
     
 }
 
 -(void) bleDidUpdateRSSI:(NSNumber *) rssi ForID:(int)ID
 {
     
-//    self.RSSIValueLabel.text = rssi.stringValue;
+    //    self.RSSIValueLabel.text = rssi.stringValue;
 }
 
 -(void) bleDidReceiveData:(unsigned char *)data length:(int)length ForID:(int)ID
 {
-    NSLog(@"Length: %d", length);
+    //    NSLog(@"Length: %d", length);
     
     UInt8 Op;
     UInt8 Data;
@@ -319,96 +281,398 @@
     Op = data[length-2];
     Data = data[length-1];
     
-    NSLog(@"Op = %d, Data = %d", Op,Data);
+    NSLog(@"Op=%d, Data=%d", Op,Data);
     
-    switch (Op) {
-        case 0:{
-            if(Data == 1) {
-                if(ID == 1) {
-                    self.sensorStateLabel1.text = @"REVERB";
-                    self.sensorState1 = 1;
+    if( self.lockState == 1 ){ //unlocked
+        switch (Op) {
+            case 0:{
+                if( self.function == 0 ){
+                    if(Data == 0) {
+                        
+                        self.sensorStateLabel1.text = @"Chipmunk";
+                        self.sensorState1 = 1;
+                        
+                    }
+                    else if(Data == 1) {
+                        
+                        self.sensorStateLabel1.text = @"Lowpass";
+                        self.sensorState1 = 0;
+                        
+                    }
+                    else if(Data == 2) {
+                        self.sensorStateLabel1.text = @"Highpass";
+                        self.sensorState1 = 0;
+                        
+                    }
                 }
-                else if(ID == 2){
-                    self.sensorStateLabel2.text = @"REVERB";
-                    self.sensorState2 = 1;
+                else if( self.function == 1 ){
+                    if(Data == 0) {
+                        
+                        self.sensorStateLabel1.text = @"Delay Feedback";
+                        self.sensorState1 = 1;
+                        
+                    }
+                    else if(Data == 1) {
+                        
+                        self.sensorStateLabel1.text = @"Delay Time";
+                        self.sensorState1 = 0;
+                        
+                    }
+                    else if(Data == 2) {
+                        self.sensorStateLabel1.text = @"Delay Dry/Wet";
+                        self.sensorState1 = 0;
+                        
+                    }
                 }
+                break;
             }
-            else if(Data == 0) {
-                if(ID == 1){
-                    self.sensorStateLabel1.text = @"IDLE";
-                    self.sensorState1 = 0;
+            case 1:{
+                if( self.function == 0 ){
+                    if(Data == 10){
+                        float nextSliderValue = self.pitchShiftSlider.value+20;
+                        float maxSliderValue = self.pitchShiftSlider.maximumValue;
+                        if(nextSliderValue <= maxSliderValue){
+                            [self.pitchShiftSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changePitchValue:nextSliderValue];
+                            
+                        }
+                        else {
+                            [self.pitchShiftSlider setValue:maxSliderValue animated:YES];
+                            [self.effectsModel changePitchValue:maxSliderValue];
+                            
+                        }
+                    }
+                    else if(Data == 20){
+                        float nextSliderValue = self.pitchShiftSlider.value-20;
+                        float minSliderValue = self.pitchShiftSlider.minimumValue;
+                        if(nextSliderValue >= minSliderValue){
+                            [self.pitchShiftSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changePitchValue:nextSliderValue];
+                            
+                        }
+                        else {
+                            [self.pitchShiftSlider setValue:minSliderValue animated:YES];
+                            [self.effectsModel changePitchValue:minSliderValue];
+                            
+                        }
+                    }
+                    else if(Data == 30){
+                        float nextSliderValue = self.pitchShiftSlider.value+50;
+                        float maxSliderValue = self.pitchShiftSlider.maximumValue;
+                        if(nextSliderValue <= maxSliderValue){
+                            [self.pitchShiftSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changePitchValue:nextSliderValue];
+                            
+                        }
+                        else {
+                            [self.pitchShiftSlider setValue:maxSliderValue animated:YES];
+                            [self.effectsModel changePitchValue:maxSliderValue];
+                            
+                        }
+                    }
+                    
+                    else if(Data == 40){
+                        float nextSliderValue = self.pitchShiftSlider.value-50;
+                        float minSliderValue = self.pitchShiftSlider.minimumValue;
+                        if(nextSliderValue >= minSliderValue){
+                            [self.pitchShiftSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changePitchValue:nextSliderValue];
+                            
+                        }
+                        else {
+                            [self.pitchShiftSlider setValue:minSliderValue animated:YES];
+                            [self.effectsModel changePitchValue:minSliderValue];
+                            
+                        }
+                    }
+                    
+                    else if(Data == 50){
+                        float nextSliderValue = self.lowpassSlider.value+0.06;
+                        float maxSliderValue = self.lowpassSlider.maximumValue;
+                        if(nextSliderValue <= maxSliderValue){
+                            [self.lowpassSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeLowpassValue:powf(10.0, nextSliderValue)];
+                            
+                        }
+                        else {
+                            [self.lowpassSlider setValue:maxSliderValue animated:YES];
+                            [self.effectsModel changeLowpassValue:powf(10.0, maxSliderValue)];
+                        }
+                    }
+                    else if(Data == 60){
+                        float nextSliderValue = self.lowpassSlider.value-0.06;
+                        float minSliderValue = self.lowpassSlider.minimumValue;
+                        if(nextSliderValue >= minSliderValue){
+                            [self.lowpassSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeLowpassValue:powf(10.0, nextSliderValue)];
+                            
+                            
+                        }
+                        else {
+                            [self.lowpassSlider setValue:minSliderValue animated:YES];
+                            [self.effectsModel changeLowpassValue:powf(10.0, minSliderValue)];
+                        }
+                    }
+                    else if(Data == 70){
+                        float nextSliderValue = self.lowpassSlider.value+0.15;
+                        float maxSliderValue = self.lowpassSlider.maximumValue;
+                        if(nextSliderValue <= maxSliderValue){
+                            [self.lowpassSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeLowpassValue:powf(10.0, nextSliderValue)];
+                            
+                        }
+                        else {
+                            [self.lowpassSlider setValue:maxSliderValue animated:YES];
+                            [self.effectsModel changeLowpassValue:powf(10.0, maxSliderValue)];
+                        }
+                    }
+                    
+                    else if(Data == 80){
+                        float nextSliderValue = self.lowpassSlider.value-0.15;
+                        float minSliderValue = self.lowpassSlider.minimumValue;
+                        if(nextSliderValue >= minSliderValue){
+                            [self.lowpassSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeLowpassValue:powf(10.0, nextSliderValue)];
+                            
+                        }
+                        else {
+                            [self.lowpassSlider setValue:minSliderValue animated:YES];
+                            [self.effectsModel changeLowpassValue:powf(10.0, minSliderValue)];
+                        }
+                    }
+                    
+                    else if(Data == 90){
+                        float nextSliderValue = self.highpassSlider.value+0.06;
+                        float maxSliderValue = self.highpassSlider.maximumValue;
+                        if(nextSliderValue <= maxSliderValue){
+                            [self.highpassSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeHighpassValue:powf(10.0, nextSliderValue)];
+                            
+                        }
+                        else {
+                            [self.highpassSlider setValue:maxSliderValue animated:YES];
+                            [self.effectsModel changeHighpassValue:powf(10.0, maxSliderValue)];
+                        }
+                    }
+                    else if(Data == 100){
+                        float nextSliderValue = self.highpassSlider.value-0.06;
+                        float minSliderValue = self.highpassSlider.minimumValue;
+                        if(nextSliderValue >= minSliderValue){
+                            [self.highpassSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeHighpassValue:powf(10.0, nextSliderValue)];
+                            
+                            
+                        }
+                        else {
+                            [self.highpassSlider setValue:minSliderValue animated:YES];
+                            [self.effectsModel changeHighpassValue:powf(10.0, minSliderValue)];
+                        }
+                    }
+                    else if(Data == 110){
+                        float nextSliderValue = self.highpassSlider.value+0.15;
+                        float maxSliderValue = self.highpassSlider.maximumValue;
+                        if(nextSliderValue <= maxSliderValue){
+                            [self.highpassSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeHighpassValue:powf(10.0, nextSliderValue)];
+                            
+                        }
+                        else {
+                            [self.highpassSlider setValue:maxSliderValue animated:YES];
+                            [self.effectsModel changeHighpassValue:powf(10.0, maxSliderValue)];
+                        }
+                    }
+                    
+                    else if(Data == 120){
+                        float nextSliderValue = self.highpassSlider.value-0.15;
+                        float minSliderValue = self.highpassSlider.minimumValue;
+                        if(nextSliderValue >= minSliderValue){
+                            [self.highpassSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeHighpassValue:powf(10.0, nextSliderValue)];
+                            
+                        }
+                        else {
+                            [self.highpassSlider setValue:minSliderValue animated:YES];
+                            [self.effectsModel changeHighpassValue:powf(10.0, minSliderValue)];
+                        }
+                    }
                 }
-                else if(ID == 2){
-                    self.sensorStateLabel2.text = @"IDLE";
-                    self.sensorState2 = 0;
+                else if( self.function == 1 ){
+                    if(Data == 10){
+                        float nextSliderValue = self.delayFeedbackSlider.value+2.4;
+                        float maxSliderValue = self.delayFeedbackSlider.maximumValue;
+                        if(nextSliderValue <= maxSliderValue){
+                            [self.delayFeedbackSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeDelayFeedback:nextSliderValue];
+                            
+                        }
+                        else {
+                            [self.delayFeedbackSlider setValue:maxSliderValue animated:YES];
+                            [self.effectsModel changeDelayFeedback:maxSliderValue];
+                            
+                        }
+                    }
+                    else if(Data == 20){
+                        float nextSliderValue = self.delayFeedbackSlider.value-2.4;
+                        float minSliderValue = self.delayFeedbackSlider.minimumValue;
+                        if(nextSliderValue >= minSliderValue){
+                            [self.delayFeedbackSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeDelayFeedback:nextSliderValue];
+                            
+                        }
+                        else {
+                            [self.delayFeedbackSlider setValue:minSliderValue animated:YES];
+                            [self.effectsModel changeDelayFeedback:minSliderValue];
+                            
+                        }
+                    }
+                    else if(Data == 30){
+                        float nextSliderValue = self.delayFeedbackSlider.value+5;
+                        float maxSliderValue = self.delayFeedbackSlider.maximumValue;
+                        if(nextSliderValue <= maxSliderValue){
+                            [self.delayFeedbackSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeDelayFeedback:nextSliderValue];
+                            
+                        }
+                        else {
+                            [self.delayFeedbackSlider setValue:maxSliderValue animated:YES];
+                            [self.effectsModel changeDelayFeedback:maxSliderValue];
+                            
+                        }
+                    }
+                    
+                    else if(Data == 40){
+                        float nextSliderValue = self.delayFeedbackSlider.value-5;
+                        float minSliderValue = self.delayFeedbackSlider.minimumValue;
+                        if(nextSliderValue >= minSliderValue){
+                            [self.delayFeedbackSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeDelayFeedback:nextSliderValue];
+                            
+                        }
+                        else {
+                            [self.delayFeedbackSlider setValue:minSliderValue animated:YES];
+                            [self.effectsModel changeDelayFeedback:minSliderValue];
+                            
+                        }
+                    }
+                    
+                    else if(Data == 50){
+                        float nextSliderValue = self.delayTimeSlider.value+0.12;
+                        float maxSliderValue = self.delayTimeSlider.maximumValue;
+                        if(nextSliderValue <= maxSliderValue){
+                            [self.delayTimeSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeDelayTime:nextSliderValue*1.5];
+                        }
+                        else {
+                            [self.delayTimeSlider setValue:maxSliderValue animated:YES];
+                            [self.effectsModel changeDelayTime:maxSliderValue*1.5];
+                        }
+                    }
+                    else if(Data == 60){
+                        float nextSliderValue = self.delayTimeSlider.value-0.12;
+                        float minSliderValue = self.delayTimeSlider.minimumValue;
+                        if(nextSliderValue >= minSliderValue){
+                            [self.delayTimeSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeDelayTime:nextSliderValue*1.5];
+                            
+                            
+                        }
+                        else {
+                            [self.delayTimeSlider setValue:minSliderValue animated:YES];
+                            [self.effectsModel changeDelayTime:minSliderValue*1.5];
+                        }
+                    }
+                    else if(Data == 70){
+                        float nextSliderValue = self.delayTimeSlider.value+0.3;
+                        float maxSliderValue = self.delayTimeSlider.maximumValue;
+                        if(nextSliderValue <= maxSliderValue){
+                            [self.delayTimeSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeDelayTime:nextSliderValue*1.5];
+                            
+                        }
+                        else {
+                            [self.delayTimeSlider setValue:maxSliderValue animated:YES];
+                            [self.effectsModel changeDelayTime:maxSliderValue*1.5];
+                        }
+                    }
+                    
+                    else if(Data == 80){
+                        float nextSliderValue = self.delayTimeSlider.value-0.3;
+                        float minSliderValue = self.delayTimeSlider.minimumValue;
+                        if(nextSliderValue >= minSliderValue){
+                            [self.delayTimeSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeDelayTime:nextSliderValue*1.5];
+                            
+                        }
+                        else {
+                            [self.delayTimeSlider setValue:minSliderValue animated:YES];
+                            [self.effectsModel changeDelayTime:minSliderValue*1.5];
+                        }
+                    }
+                    
+                    else if(Data == 90){
+                        float nextSliderValue = self.delayWetSlider.value+1;
+                        float maxSliderValue = self.delayWetSlider.maximumValue;
+                        if(nextSliderValue <= maxSliderValue){
+                            [self.delayWetSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeDelayWet:nextSliderValue];
+                            
+                        }
+                        else {
+                            [self.delayWetSlider setValue:maxSliderValue animated:YES];
+                            [self.effectsModel changeDelayWet:maxSliderValue];
+                        }
+                    }
+                    else if(Data == 100){
+                        float nextSliderValue = self.delayWetSlider.value-1;
+                        float minSliderValue = self.delayWetSlider.minimumValue;
+                        if(nextSliderValue >= minSliderValue){
+                            [self.delayWetSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeDelayWet:nextSliderValue];
+                            
+                            
+                        }
+                        else {
+                            [self.delayWetSlider setValue:minSliderValue animated:YES];
+                            [self.effectsModel changeDelayWet:minSliderValue];
+                        }
+                    }
+                    else if(Data == 110){
+                        float nextSliderValue = self.delayWetSlider.value+2.2;
+                        float maxSliderValue = self.delayWetSlider.maximumValue;
+                        if(nextSliderValue <= maxSliderValue){
+                            [self.delayWetSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeDelayWet:nextSliderValue];
+                            
+                        }
+                        else {
+                            [self.delayWetSlider setValue:maxSliderValue animated:YES];
+                            [self.effectsModel changeDelayWet:maxSliderValue];
+                        }
+                    }
+                    
+                    else if(Data == 120){
+                        float nextSliderValue = self.delayWetSlider.value-2.2;
+                        float minSliderValue = self.delayWetSlider.minimumValue;
+                        if(nextSliderValue >= minSliderValue){
+                            [self.delayWetSlider setValue:nextSliderValue animated:YES];
+                            [self.effectsModel changeDelayWet:nextSliderValue];
+                            
+                        }
+                        else {
+                            [self.delayWetSlider setValue:minSliderValue animated:YES];
+                            [self.effectsModel changeDelayWet:minSliderValue];
+                        }
+                    }
+                    
                 }
+                
+                break;
             }
-            break;
+            default:
+                break;
         }
-        case 1:{
-            if(Data == 10){
-                NSLog(@"slider +10!");
-                float nextSliderValue = self.reverbSlider.value+10;
-                float maxSliderValue = self.reverbSlider.maximumValue;
-                if(nextSliderValue <= maxSliderValue){
-                    [self.reverbSlider setValue:nextSliderValue animated:YES];
-                    [self.effectsModel changeReverbValue:nextSliderValue];
-
-                }
-                else {
-                    [self.reverbSlider setValue:maxSliderValue animated:YES];
-                    [self.effectsModel changeReverbValue:maxSliderValue];
-
-                }
-            }
-            else if(Data == 20){
-                NSLog(@"slider -10!");
-                float nextSliderValue = self.reverbSlider.value-10;
-                float minSliderValue = self.reverbSlider.minimumValue;
-                if(nextSliderValue >= minSliderValue){
-                    [self.reverbSlider setValue:nextSliderValue animated:YES];
-                    [self.effectsModel changeReverbValue:nextSliderValue];
-
-                }
-                else {
-                    [self.reverbSlider setValue:minSliderValue animated:YES];
-                    [self.effectsModel changeReverbValue:minSliderValue];
-
-                }
-            }
-            break;
-        }
-        default:
-            break;
     }
-    
-    switch(self.sensorState1){
-        case 0:{
-            self.sensorStateLabel1.text = [NSString stringWithFormat:@"IDLE"];
-            break;
-        }
-        case 1:{
-            self.sensorStateLabel1.text = [NSString stringWithFormat:@"REVERB"];
-            break;
-        }
-        default:
-            break;
-    }
-
-    switch(self.sensorState2){
-        case 0:{
-            self.sensorStateLabel2.text = [NSString stringWithFormat:@"IDLE"];
-            break;
-        }
-        case 1:{
-            self.sensorStateLabel2.text = [NSString stringWithFormat:@"REVERB"];
-            break;
-        }
-        default:
-            break;
-    }
-
-//    self.packetSizeLabel.text = [NSString stringWithFormat:@"%d",length];
+    //    self.packetSizeLabel.text = [NSString stringWithFormat:@"%d",length];
 }
 
 

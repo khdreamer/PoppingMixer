@@ -20,11 +20,21 @@
 @property (weak, nonatomic) IBOutlet UISlider *delayTimeSlider;
 @property (weak, nonatomic) IBOutlet UISlider *highpassSlider;
 @property (strong, nonatomic) BLE* ble;
-
-@property (weak, nonatomic) IBOutlet UIButton *acapellaButton;
+@property (strong, nonatomic) BLE* ble2;
 @property (weak, nonatomic) IBOutlet UIButton *instrumentalButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *switchFunctionButton;
+@property (nonatomic) int function;
 
+@property (weak, nonatomic) IBOutlet UIButton *lockButton;
+@property (nonatomic) int lockState;
+
+- (IBAction)resetPanel:(UIButton *)sender;
+
+- (IBAction)resetSensor:(UIButton *)sender;
+
+- (IBAction)switchLockState:(UIButton *)sender;
+- (IBAction)switchFunction:(UIButton *)sender;
 
 - (IBAction)connect:(id)sender;
 
@@ -40,5 +50,6 @@
 - (IBAction)changeDelayWet:(UISlider *)sender;
 - (IBAction)changeDelayTime:(UISlider *)sender;
 - (IBAction)changeDelayFeedback:(UISlider *)sender;
+//- (IBAction)switchFunction:(id)sender;
 
 @end
