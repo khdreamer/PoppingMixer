@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1832E1E6195BEED000E70B10 /* circleright32@ipad2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1832E1E0195BEED000E70B10 /* circleright32@ipad2x.png */; };
+		1832E1E7195BEED000E70B10 /* exchange32@ipad2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1832E1E1195BEED000E70B10 /* exchange32@ipad2x.png */; };
+		1832E1E8195BEED000E70B10 /* leftturnarrow32@ipad2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1832E1E2195BEED000E70B10 /* leftturnarrow32@ipad2x.png */; };
+		1832E1E9195BEED000E70B10 /* lock32@ipad2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1832E1E3195BEED000E70B10 /* lock32@ipad2x.png */; };
+		1832E1EA195BEED000E70B10 /* rss32@ipad2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1832E1E4195BEED000E70B10 /* rss32@ipad2x.png */; };
+		1832E1EB195BEED000E70B10 /* unlock32@ipad2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1832E1E5195BEED000E70B10 /* unlock32@ipad2x.png */; };
 		188D8CC71945B0A50068B51E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188D8CC61945B0A50068B51E /* CoreBluetooth.framework */; };
 		188D8CCE194945B20068B51E /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D8CCC1949459A0068B51E /* BLE.m */; };
 		1C1B15C119432D550099E920 /* AudioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B15C019432D550099E920 /* AudioModel.m */; };
@@ -65,6 +71,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1832E1E0195BEED000E70B10 /* circleright32@ipad2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleright32@ipad2x.png"; sourceTree = "<group>"; };
+		1832E1E1195BEED000E70B10 /* exchange32@ipad2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exchange32@ipad2x.png"; sourceTree = "<group>"; };
+		1832E1E2195BEED000E70B10 /* leftturnarrow32@ipad2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftturnarrow32@ipad2x.png"; sourceTree = "<group>"; };
+		1832E1E3195BEED000E70B10 /* lock32@ipad2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock32@ipad2x.png"; sourceTree = "<group>"; };
+		1832E1E4195BEED000E70B10 /* rss32@ipad2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rss32@ipad2x.png"; sourceTree = "<group>"; };
+		1832E1E5195BEED000E70B10 /* unlock32@ipad2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unlock32@ipad2x.png"; sourceTree = "<group>"; };
 		188D8CC61945B0A50068B51E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		188D8CCB1949459A0068B51E /* BLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
 		188D8CCC1949459A0068B51E /* BLE.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
@@ -279,6 +291,12 @@
 		1CF0EDF9193D8D360001EE68 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1832E1E0195BEED000E70B10 /* circleright32@ipad2x.png */,
+				1832E1E1195BEED000E70B10 /* exchange32@ipad2x.png */,
+				1832E1E2195BEED000E70B10 /* leftturnarrow32@ipad2x.png */,
+				1832E1E3195BEED000E70B10 /* lock32@ipad2x.png */,
+				1832E1E4195BEED000E70B10 /* rss32@ipad2x.png */,
+				1832E1E5195BEED000E70B10 /* unlock32@ipad2x.png */,
 				1C680ACD195BDCE3007DED72 /* logo.png */,
 				188D8CCA1949459A0068B51E /* BLE */,
 				1C511FF21944A4060031764C /* TheAmazingAudioEngine.xcodeproj */,
@@ -382,10 +400,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C1B15D21943446C0099E920 /* HS R8 Drums.sf2 in Resources */,
+				1832E1E6195BEED000E70B10 /* circleright32@ipad2x.png in Resources */,
+				1832E1E8195BEED000E70B10 /* leftturnarrow32@ipad2x.png in Resources */,
+				1832E1E9195BEED000E70B10 /* lock32@ipad2x.png in Resources */,
+				1832E1E7195BEED000E70B10 /* exchange32@ipad2x.png in Resources */,
 				1C511FEB1944A2F50031764C /* track.mp3 in Resources */,
 				1C680ACE195BDCE3007DED72 /* logo.png in Resources */,
 				1C680ACA195BD85A007DED72 /* a lot of songs instrumental.mp3 in Resources */,
 				1CF0EDDA193D85840001EE68 /* Images.xcassets in Resources */,
+				1832E1EB195BEED000E70B10 /* unlock32@ipad2x.png in Resources */,
+				1832E1EA195BEED000E70B10 /* rss32@ipad2x.png in Resources */,
 				1C680AC61959DFEB007DED72 /* lies_and_misery_acapella.aif in Resources */,
 				1C680AC41959DF33007DED72 /* lies_and_misery_instrumental.aif in Resources */,
 				1C67AC041959B4AC005012F1 /* Main_iPad.storyboard in Resources */,

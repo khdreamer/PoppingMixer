@@ -16,11 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pln-Cs-fl5">
-                                <rect key="frame" x="34" y="910" width="106" height="43"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pln-Cs-fl5">
+                                <rect key="frame" x="30" y="895" width="130" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Rock'n Roll!">
+                                <state key="normal" image="circleright32@ipad2x.png">
                                     <color key="titleColor" red="0.99468804700000002" green="1" blue="0.99124508040000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -35,7 +34,7 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reverb" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsl-1K-cDe">
-                                <rect key="frame" x="42" y="486" width="150" height="21"/>
+                                <rect key="frame" x="20" y="484" width="150" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,7 +48,7 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Low Pass" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHX-Xr-ha4">
-                                <rect key="frame" x="42" y="535" width="150" height="21"/>
+                                <rect key="frame" x="20" y="533" width="150" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,7 +62,7 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="High Pass" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWv-3M-Hwb">
-                                <rect key="frame" x="42" y="585" width="150" height="21"/>
+                                <rect key="frame" x="20" y="583" width="150" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -77,7 +76,7 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chipmunk" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbi-Ne-bPk">
-                                <rect key="frame" x="42" y="644" width="150" height="21"/>
+                                <rect key="frame" x="20" y="642" width="150" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,7 +90,7 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delay Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a84-hb-JZU">
-                                <rect key="frame" x="42" y="699" width="150" height="21"/>
+                                <rect key="frame" x="20" y="697" width="150" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -105,7 +104,7 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delay Feedback" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfx-qP-ZPi">
-                                <rect key="frame" x="42" y="755" width="150" height="21"/>
+                                <rect key="frame" x="20" y="753" width="150" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -119,16 +118,16 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delay Dry/Wet" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYd-EN-Sbd">
-                                <rect key="frame" x="42" y="805" width="150" height="21"/>
+                                <rect key="frame" x="20" y="803" width="150" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CxT-7R-IJo">
-                                <rect key="frame" x="199" y="914" width="93" height="36"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CxT-7R-IJo">
+                                <rect key="frame" x="184" y="898" width="101" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Connect">
+                                <state key="normal" image="rss32@ipad2x.png">
                                     <color key="titleColor" red="0.99468804700000002" green="1" blue="0.99124508040000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -231,10 +230,10 @@
                                     <action selector="switchFunction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="pg8-ek-RPQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0G-av-T4Y">
-                                <rect key="frame" x="350" y="917" width="102" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0G-av-T4Y">
+                                <rect key="frame" x="330" y="899" width="129" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Reset Panel">
+                                <state key="normal" image="exchange32@ipad2x.png">
                                     <color key="titleColor" red="0.99468804700000002" green="1" blue="0.99124508040000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -242,10 +241,10 @@
                                     <action selector="resetPanel:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="V8Q-zt-v6g"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SFg-OX-8ML">
-                                <rect key="frame" x="524" y="917" width="96" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SFg-OX-8ML">
+                                <rect key="frame" x="478" y="904" width="140" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Reset Sensor">
+                                <state key="normal" image="leftturnarrow32@ipad2x.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -253,11 +252,11 @@
                                     <action selector="resetSensor:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Gbo-Kv-oh9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sLn-fX-OOd">
-                                <rect key="frame" x="675" y="917" width="73" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sLn-fX-OOd">
+                                <rect key="frame" x="626" y="897" width="122" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <size key="titleShadowOffset" width="1" height="0.0"/>
-                                <state key="normal" title="Locked">
+                                <state key="normal" image="lock32@ipad2x.png">
                                     <color key="titleColor" red="0.99468804700000002" green="1" blue="0.99124508040000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -273,14 +272,24 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="chipmunkInstrumentalSwitch" destination="Uo2-A0-Nqx" id="OBF-3E-j6L"/>
+                        <outlet property="chipmunkVocalSwitch" destination="47V-2t-8P5" id="scn-tn-Mjk"/>
                         <outlet property="delayFeedbackSlider" destination="oqZ-Ee-uk9" id="x2g-YV-6bD"/>
                         <outlet property="delayTimeSlider" destination="kbV-Q7-KWb" id="4Eu-E4-htJ"/>
                         <outlet property="delayWetSlider" destination="MZS-lT-aJD" id="GO3-tc-MOY"/>
+                        <outlet property="delaytimeInstrumentalSwitch" destination="Mo5-mr-gX8" id="CFf-Kx-rTk"/>
+                        <outlet property="delaytimeVocalSwitch" destination="DFv-5z-Ddp" id="Zvf-Ac-IIe"/>
+                        <outlet property="highpassInstrumentalSwitch" destination="Aen-7u-1Dt" id="hMb-EV-elN"/>
                         <outlet property="highpassSlider" destination="cDe-xl-ouO" id="YDc-rb-N7f"/>
+                        <outlet property="highpassVocalSwitch" destination="5W4-d0-U27" id="48O-FX-Y1T"/>
                         <outlet property="lockButton" destination="sLn-fX-OOd" id="68k-xt-Ofw"/>
+                        <outlet property="lowpassInstrumentalSwitch" destination="Fcw-35-aUF" id="HAM-CV-8Mi"/>
                         <outlet property="lowpassSlider" destination="XwI-WR-Bsh" id="HNg-NA-F6J"/>
+                        <outlet property="lowpassVocalSwitch" destination="rlB-hy-imj" id="Mtf-oP-HDx"/>
                         <outlet property="pitchShiftSlider" destination="9qe-YO-nvZ" id="y9e-7A-ESb"/>
+                        <outlet property="reverbInstrumentalSwitch" destination="MDC-ea-VIn" id="LjN-1d-YUE"/>
                         <outlet property="reverbSlider" destination="1eB-Qu-NeH" id="esV-qj-wjK"/>
+                        <outlet property="reverbVocalSwitch" destination="dza-mH-rR2" id="mbW-0d-j1h"/>
                         <outlet property="switchFunctionButton" destination="xw3-XV-ZfP" id="IPa-E4-LRD"/>
                         <outlet property="touchMeButton" destination="pln-Cs-fl5" id="YuJ-rg-SbZ"/>
                     </connections>
@@ -291,7 +300,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="circleright32@ipad2x.png" width="32" height="32"/>
+        <image name="exchange32@ipad2x.png" width="32" height="32"/>
+        <image name="leftturnarrow32@ipad2x.png" width="32" height="32"/>
+        <image name="lock32@ipad2x.png" width="32" height="32"/>
         <image name="logo.png" width="1667" height="1667"/>
+        <image name="rss32@ipad2x.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

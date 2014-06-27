@@ -43,9 +43,10 @@
     //    self.RSSIValueLabel.font = [UIFont fontWithName:@"ProximaNovaSemibold" size:20];
     //    [self.view addSubview:self.RSSIValueLabel];
     
-    self.sensorStateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 150, 150)];
-    self.sensorStateLabel1.text = @"sensorState null";
+    self.sensorStateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 200, 150)];
+    self.sensorStateLabel1.text = @"sensor unconnected";
     self.sensorStateLabel1.font = [UIFont fontWithName:@"ProximaNovaSemibold" size:30];
+    self.sensorStateLabel1.textColor = [UIColor whiteColor];
     [self.view addSubview:self.sensorStateLabel1];
     
     NSLog(@"slider max: %f, min: %f", self.reverbSlider.maximumValue, self.reverbSlider.minimumValue);
@@ -167,7 +168,59 @@
 }
 
 - (IBAction)resetPanel:(UIButton *)sender {
+    [self.reverbSlider setValue:0 animated:YES];
+    [self.effectsModel changeReverbValue:0];
     
+    [self.lowpassSlider setValue:4.4 animated:YES];
+    [self.effectsModel changeLowpassValue:4.4];
+    
+    [self.highpassSlider setValue:1 animated:YES];
+    [self.effectsModel changeHighpassValue:1];
+    
+    [self.pitchShiftSlider setValue:0 animated:YES];
+    [self.effectsModel changePitchValue:0];
+    
+    [self.delayTimeSlider setValue:0 animated:YES];
+    [self.effectsModel changeDelayTime:0];
+    
+    [self.delayFeedbackSlider setValue:0 animated:YES];
+    [self.effectsModel changeDelayFeedback:0];
+    
+    [self.delayWetSlider setValue:0 animated:YES];
+    [self.effectsModel changeDelayWet:0];
+    
+    /////
+    
+    [self.reverbInstrumentalSwitch setOn:NO animated:YES];
+    [self.reverbVocalSwitch setOn:NO animated:YES];
+    
+    [self.lowpassInstrumentalSwitch setOn:NO animated:YES];
+    [self.lowpassVocalSwitch setOn:NO animated:YES];
+    
+    [self.highpassInstrumentalSwitch setOn:NO animated:YES];
+    [self.highpassVocalSwitch setOn:NO animated:YES];
+    
+    [self.chipmunkInstrumentalSwitch setOn:NO animated:YES];
+    [self.chipmunkVocalSwitch setOn:NO animated:YES];
+    
+    [self.delaytimeInstrumentalSwitch setOn:NO animated:YES];
+    [self.delaytimeVocalSwitch setOn:NO animated:YES];
+    
+    /////
+    
+    
+    for( int i=0 ; i<5 ; i++){
+        [self.effectsModel turnChannel:0 onOrOff:NO forEffect:i];
+        [self.effectsModel turnChannel:1 onOrOff:NO forEffect:i];
+    }
+
+    
+    self.lockState = 0;
+//    [self.lockButton setTitle:@"Locked" forState:UIControlStateNormal];
+    [self.lockButton setImage:[UIImage imageNamed:@"lock32@ipad2x.png"] forState:UIControlStateNormal];
+
+    self.function = 0;
+    [self.switchFunctionButton setTitle:@"Filters" forState:UIControlStateNormal];
 }
 
 - (IBAction)resetSensor:(UIButton *)sender {
@@ -182,11 +235,13 @@
     NSLog(@"switch LockState!");
     if( self.lockState == 1 ) {
         self.lockState = 0;
-        [self.lockButton setTitle:@"Locked" forState:UIControlStateNormal];
+//        [self.lockButton setTitle:@"Locked" forState:UIControlStateNormal];
+        [self.lockButton setImage:[UIImage imageNamed:@"lock32@ipad2x.png"] forState:UIControlStateNormal];
     }
     else {
         self.lockState = 1;
-        [self.lockButton setTitle:@"Unlocked" forState:UIControlStateNormal];
+//        [self.lockButton setTitle:@"Unlocked" forState:UIControlStateNormal];
+        [self.lockButton setImage:[UIImage imageNamed:@"unlock32@ipad2x.png"] forState:UIControlStateNormal];
     }
 }
 
