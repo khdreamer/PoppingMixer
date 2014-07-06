@@ -73,11 +73,11 @@
 
 - (void)playMusic {
     
-    NSURL *instrumentalMusic = [[NSBundle mainBundle] URLForResource:@"a lot of songs instrumental" withExtension:@"mp3"];
+    NSURL *instrumentalMusic = [[NSBundle mainBundle] URLForResource:@"lies_and_misery_instrumental" withExtension:@"aif"];
     AEAudioFilePlayer *instrumental = [AEAudioFilePlayer audioFilePlayerWithURL:instrumentalMusic
                                                 audioController:_audioController
                                                           error:NULL];
-    NSURL *acapellaMusic = [[NSBundle mainBundle] URLForResource:@"a lot of songs acapella" withExtension:@"mp3"];
+    NSURL *acapellaMusic = [[NSBundle mainBundle] URLForResource:@"lies_and_misery_acapella" withExtension:@"aif"];
     AEAudioFilePlayer *acapella = [AEAudioFilePlayer audioFilePlayerWithURL:acapellaMusic
                                                   audioController:_audioController
                                                             error:NULL];
