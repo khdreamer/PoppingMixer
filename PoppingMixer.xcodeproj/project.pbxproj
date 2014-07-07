@@ -15,6 +15,8 @@
 		1832E1EB195BEED000E70B10 /* unlock32@ipad2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1832E1E5195BEED000E70B10 /* unlock32@ipad2x.png */; };
 		188D8CC71945B0A50068B51E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188D8CC61945B0A50068B51E /* CoreBluetooth.framework */; };
 		188D8CCE194945B20068B51E /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D8CCC1949459A0068B51E /* BLE.m */; };
+		18B258C01969811800F8CD9D /* rippleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B258BF1969811800F8CD9D /* rippleLayer.m */; };
+		18B258C3196993B500F8CD9D /* RippleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B258C2196993B500F8CD9D /* RippleView.m */; };
 		1C1B15C119432D550099E920 /* AudioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B15C019432D550099E920 /* AudioModel.m */; };
 		1C1B15C4194330C60099E920 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B15C3194330C60099E920 /* AudioToolbox.framework */; };
 		1C1B15C6194330E00099E920 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B15C5194330E00099E920 /* AVFoundation.framework */; };
@@ -81,6 +83,10 @@
 		188D8CCB1949459A0068B51E /* BLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
 		188D8CCC1949459A0068B51E /* BLE.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
 		188D8CCD1949459A0068B51E /* BLEDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
+		18B258BE1969811800F8CD9D /* rippleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rippleLayer.h; sourceTree = "<group>"; };
+		18B258BF1969811800F8CD9D /* rippleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rippleLayer.m; sourceTree = "<group>"; };
+		18B258C1196993B500F8CD9D /* RippleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RippleView.h; sourceTree = "<group>"; };
+		18B258C2196993B500F8CD9D /* RippleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RippleView.m; sourceTree = "<group>"; };
 		1C1B15BF19432D550099E920 /* AudioModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioModel.h; path = Models/AudioModel.h; sourceTree = "<group>"; };
 		1C1B15C019432D550099E920 /* AudioModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioModel.m; path = Models/AudioModel.m; sourceTree = "<group>"; };
 		1C1B15C3194330C60099E920 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -273,6 +279,10 @@
 			children = (
 				1CF0EDD0193D85840001EE68 /* Main_iPhone.storyboard */,
 				1C67AC021959B4AC005012F1 /* Main_iPad.storyboard */,
+				18B258BE1969811800F8CD9D /* rippleLayer.h */,
+				18B258BF1969811800F8CD9D /* rippleLayer.m */,
+				18B258C1196993B500F8CD9D /* RippleView.h */,
+				18B258C2196993B500F8CD9D /* RippleView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -435,10 +445,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				188D8CCE194945B20068B51E /* BLE.m in Sources */,
+				18B258C01969811800F8CD9D /* rippleLayer.m in Sources */,
 				1C511FDF19449FAF0031764C /* PoppingMixerViewController.m in Sources */,
 				1CF0EDCF193D85840001EE68 /* PoppingMixerAppDelegate.m in Sources */,
 				1CF0EDCB193D85840001EE68 /* main.m in Sources */,
 				1C67AC0119593EA8005012F1 /* EffectsModel.m in Sources */,
+				18B258C3196993B500F8CD9D /* RippleView.m in Sources */,
 				1C1B15C119432D550099E920 /* AudioModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

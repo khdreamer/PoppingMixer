@@ -10,6 +10,7 @@
 #import "AudioModel.h"
 #import "TheAmazingAudioEngine.h"
 #import "EffectsModel.h"
+#import "RippleView.h"
 
 @interface PoppingMixerViewController ()
 
@@ -18,6 +19,8 @@
 
 @property (nonatomic, strong) UILabel *sensorStateLabel1;
 @property (nonatomic) int sensorState1;
+
+-(void) addBeat;
 
 @end
 
@@ -49,7 +52,6 @@
     self.sensorStateLabel1.textColor = [UIColor whiteColor];
     [self.view addSubview:self.sensorStateLabel1];
     
-    NSLog(@"slider max: %f, min: %f", self.reverbSlider.maximumValue, self.reverbSlider.minimumValue);
     
 }
 
@@ -69,6 +71,14 @@
             [[self.ble CM] cancelPeripheralConnection:[self.ble activePeripheral]];
         }
     }
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    RippleView *rippleView = [[RippleView alloc] initWithFrame:CGRectMake(50, 50, 200, 200)];
+    [self.view addSubview:rippleView];
+
+    
 }
 
 #pragma mark - Getters
@@ -105,21 +115,12 @@
 
 #pragma mark - Effects
 
-- (IBAction)toggleChannel:(UISwitch *)sender {
-    
-    // 0 ===> instrumental
-    // 1 ===> acapella
-    int channelId = sender.tag % 2;
-    int effectId = (int)(sender.tag / 2);
-    NSLog(@"%d", sender.tag);
-    [self.effectsModel turnChannel:channelId onOrOff:sender.on forEffect:effectId];
-    
-}
-
-- (IBAction)addBeat:(id)sender {
+- (void) addBeat {
     
     NSLog(@"add beat");
     [self.audioModel playNote:24 withGain:400];
+//    UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+//    CAShapeLayer *circle = [CAShapeLayer ]
     
 }
 
@@ -129,98 +130,12 @@
     
 }
 
-- (IBAction)applyReverb:(UISlider *)sender {
-    
-    [self.effectsModel changeReverbValue:sender.value];
-    
-}
 
-- (IBAction)addLowpass:(UISlider *)sender {
-    
-    [self.effectsModel changeLowpassValue:powf(10.0, sender.value)];
-    
-}
-
-- (IBAction)changePitch:(UISlider *)sender {
-    
-    [self.effectsModel changePitchValue:sender.value];
-    
-}
-
-- (IBAction)changeDelayWet:(UISlider *)sender {
-    
-    [self.effectsModel changeDelayWet:sender.value];
-    
-}
-
-- (IBAction)changeDelayTime:(UISlider *)sender {
-    
-    int value = floor(sender.value);
-    [self.effectsModel changeDelayTime:value*0.5];
-    self.delayTimeSlider.value = value;
-    
-}
-
-- (IBAction)changeDelayFeedback:(UISlider *)sender {
-    
-    [self.effectsModel changeDelayFeedback:sender.value];
-    
-}
 
 - (IBAction)resetPanel:(UIButton *)sender {
-    [self.reverbSlider setValue:0 animated:YES];
-    [self.effectsModel changeReverbValue:0];
-    
-    [self.lowpassSlider setValue:4.4 animated:YES];
-    [self.effectsModel changeLowpassValue:4.4];
-    
-    [self.highpassSlider setValue:1 animated:YES];
-    [self.effectsModel changeHighpassValue:1];
-    
-    [self.pitchShiftSlider setValue:0 animated:YES];
-    [self.effectsModel changePitchValue:0];
-    
-    [self.delayTimeSlider setValue:0 animated:YES];
-    [self.effectsModel changeDelayTime:0];
-    
-    [self.delayFeedbackSlider setValue:0 animated:YES];
-    [self.effectsModel changeDelayFeedback:0];
-    
-    [self.delayWetSlider setValue:0 animated:YES];
-    [self.effectsModel changeDelayWet:0];
-    
-    /////
-    
-    [self.reverbInstrumentalSwitch setOn:NO animated:YES];
-    [self.reverbVocalSwitch setOn:NO animated:YES];
-    
-    [self.lowpassInstrumentalSwitch setOn:NO animated:YES];
-    [self.lowpassVocalSwitch setOn:NO animated:YES];
-    
-    [self.highpassInstrumentalSwitch setOn:NO animated:YES];
-    [self.highpassVocalSwitch setOn:NO animated:YES];
-    
-    [self.chipmunkInstrumentalSwitch setOn:NO animated:YES];
-    [self.chipmunkVocalSwitch setOn:NO animated:YES];
-    
-    [self.delaytimeInstrumentalSwitch setOn:NO animated:YES];
-    [self.delaytimeVocalSwitch setOn:NO animated:YES];
-    
-    /////
-    
-    
-    for( int i=0 ; i<5 ; i++){
-        [self.effectsModel turnChannel:0 onOrOff:NO forEffect:i];
-        [self.effectsModel turnChannel:1 onOrOff:NO forEffect:i];
-    }
-
     
     self.lockState = 0;
-//    [self.lockButton setTitle:@"Locked" forState:UIControlStateNormal];
     [self.lockButton setImage:[UIImage imageNamed:@"lock32@ipad2x.png"] forState:UIControlStateNormal];
-
-    self.function = 0;
-    [self.switchFunctionButton setTitle:@"Filters" forState:UIControlStateNormal];
 }
 
 - (IBAction)resetSensor:(UIButton *)sender {
@@ -245,23 +160,6 @@
     }
 }
 
-- (IBAction)switchFunction:(id)sender {
-    NSLog(@"switch Function!");
-    if( self.function == 1 ) {
-        self.function = 0;
-        [self.switchFunctionButton setTitle:@"Filters" forState:UIControlStateNormal];
-    }
-    else {
-        self.function = 1;
-        [self.switchFunctionButton setTitle:@"Delays" forState:UIControlStateNormal];
-    }
-}
-
-- (IBAction)addHighPass:(UISlider *)sender {
-    
-    [self.effectsModel changeHighpassValue:powf(10.0, sender.value)];
-    
-}
 
 #pragma mark - BLE
 
@@ -333,394 +231,25 @@
     UInt8 Op;
     UInt8 Data;
     
-    Op = data[length-2];
+//    Op = data[length-2];
     Data = data[length-1];
     
     NSLog(@"Op=%d, Data=%d", Op,Data);
     
     if( self.lockState == 1 ){ //unlocked
-        switch (Op) {
+        switch (Data) {
             case 0:{
-                if( self.function == 0 ){
-                    if(Data == 0) {
-                        
-                        self.sensorStateLabel1.text = @"Chipmunk";
-                        self.sensorState1 = 1;
-                        
-                    }
-                    else if(Data == 1) {
-                        
-                        self.sensorStateLabel1.text = @"Lowpass";
-                        self.sensorState1 = 0;
-                        
-                    }
-                    else if(Data == 2) {
-                        self.sensorStateLabel1.text = @"Highpass";
-                        self.sensorState1 = 0;
-                        
-                    }
-                }
-                else if( self.function == 1 ){
-                    if(Data == 0) {
-                        
-                        self.sensorStateLabel1.text = @"Delay Feedback";
-                        self.sensorState1 = 1;
-                        
-                    }
-                    else if(Data == 1) {
-                        
-                        self.sensorStateLabel1.text = @"Delay Time";
-                        self.sensorState1 = 0;
-                        
-                    }
-                    else if(Data == 2) {
-                        self.sensorStateLabel1.text = @"Delay Dry/Wet";
-                        self.sensorState1 = 0;
-                        
-                    }
-                }
+                [self addBeat];
                 break;
             }
             case 1:{
-                if( self.function == 0 ){
-                    if(Data == 10){
-                        float nextSliderValue = self.pitchShiftSlider.value+20;
-                        float maxSliderValue = self.pitchShiftSlider.maximumValue;
-                        if(nextSliderValue <= maxSliderValue){
-                            [self.pitchShiftSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changePitchValue:nextSliderValue];
-                            
-                        }
-                        else {
-                            [self.pitchShiftSlider setValue:maxSliderValue animated:YES];
-                            [self.effectsModel changePitchValue:maxSliderValue];
-                            
-                        }
-                    }
-                    else if(Data == 20){
-                        float nextSliderValue = self.pitchShiftSlider.value-20;
-                        float minSliderValue = self.pitchShiftSlider.minimumValue;
-                        if(nextSliderValue >= minSliderValue){
-                            [self.pitchShiftSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changePitchValue:nextSliderValue];
-                            
-                        }
-                        else {
-                            [self.pitchShiftSlider setValue:minSliderValue animated:YES];
-                            [self.effectsModel changePitchValue:minSliderValue];
-                            
-                        }
-                    }
-                    else if(Data == 30){
-                        float nextSliderValue = self.pitchShiftSlider.value+50;
-                        float maxSliderValue = self.pitchShiftSlider.maximumValue;
-                        if(nextSliderValue <= maxSliderValue){
-                            [self.pitchShiftSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changePitchValue:nextSliderValue];
-                            
-                        }
-                        else {
-                            [self.pitchShiftSlider setValue:maxSliderValue animated:YES];
-                            [self.effectsModel changePitchValue:maxSliderValue];
-                            
-                        }
-                    }
-                    
-                    else if(Data == 40){
-                        float nextSliderValue = self.pitchShiftSlider.value-50;
-                        float minSliderValue = self.pitchShiftSlider.minimumValue;
-                        if(nextSliderValue >= minSliderValue){
-                            [self.pitchShiftSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changePitchValue:nextSliderValue];
-                            
-                        }
-                        else {
-                            [self.pitchShiftSlider setValue:minSliderValue animated:YES];
-                            [self.effectsModel changePitchValue:minSliderValue];
-                            
-                        }
-                    }
-                    
-                    else if(Data == 50){
-                        float nextSliderValue = self.lowpassSlider.value+0.06;
-                        float maxSliderValue = self.lowpassSlider.maximumValue;
-                        if(nextSliderValue <= maxSliderValue){
-                            [self.lowpassSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeLowpassValue:powf(10.0, nextSliderValue)];
-                            
-                        }
-                        else {
-                            [self.lowpassSlider setValue:maxSliderValue animated:YES];
-                            [self.effectsModel changeLowpassValue:powf(10.0, maxSliderValue)];
-                        }
-                    }
-                    else if(Data == 60){
-                        float nextSliderValue = self.lowpassSlider.value-0.06;
-                        float minSliderValue = self.lowpassSlider.minimumValue;
-                        if(nextSliderValue >= minSliderValue){
-                            [self.lowpassSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeLowpassValue:powf(10.0, nextSliderValue)];
-                            
-                            
-                        }
-                        else {
-                            [self.lowpassSlider setValue:minSliderValue animated:YES];
-                            [self.effectsModel changeLowpassValue:powf(10.0, minSliderValue)];
-                        }
-                    }
-                    else if(Data == 70){
-                        float nextSliderValue = self.lowpassSlider.value+0.15;
-                        float maxSliderValue = self.lowpassSlider.maximumValue;
-                        if(nextSliderValue <= maxSliderValue){
-                            [self.lowpassSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeLowpassValue:powf(10.0, nextSliderValue)];
-                            
-                        }
-                        else {
-                            [self.lowpassSlider setValue:maxSliderValue animated:YES];
-                            [self.effectsModel changeLowpassValue:powf(10.0, maxSliderValue)];
-                        }
-                    }
-                    
-                    else if(Data == 80){
-                        float nextSliderValue = self.lowpassSlider.value-0.15;
-                        float minSliderValue = self.lowpassSlider.minimumValue;
-                        if(nextSliderValue >= minSliderValue){
-                            [self.lowpassSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeLowpassValue:powf(10.0, nextSliderValue)];
-                            
-                        }
-                        else {
-                            [self.lowpassSlider setValue:minSliderValue animated:YES];
-                            [self.effectsModel changeLowpassValue:powf(10.0, minSliderValue)];
-                        }
-                    }
-                    
-                    else if(Data == 90){
-                        float nextSliderValue = self.highpassSlider.value+0.06;
-                        float maxSliderValue = self.highpassSlider.maximumValue;
-                        if(nextSliderValue <= maxSliderValue){
-                            [self.highpassSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeHighpassValue:powf(10.0, nextSliderValue)];
-                            
-                        }
-                        else {
-                            [self.highpassSlider setValue:maxSliderValue animated:YES];
-                            [self.effectsModel changeHighpassValue:powf(10.0, maxSliderValue)];
-                        }
-                    }
-                    else if(Data == 100){
-                        float nextSliderValue = self.highpassSlider.value-0.06;
-                        float minSliderValue = self.highpassSlider.minimumValue;
-                        if(nextSliderValue >= minSliderValue){
-                            [self.highpassSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeHighpassValue:powf(10.0, nextSliderValue)];
-                            
-                            
-                        }
-                        else {
-                            [self.highpassSlider setValue:minSliderValue animated:YES];
-                            [self.effectsModel changeHighpassValue:powf(10.0, minSliderValue)];
-                        }
-                    }
-                    else if(Data == 110){
-                        float nextSliderValue = self.highpassSlider.value+0.15;
-                        float maxSliderValue = self.highpassSlider.maximumValue;
-                        if(nextSliderValue <= maxSliderValue){
-                            [self.highpassSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeHighpassValue:powf(10.0, nextSliderValue)];
-                            
-                        }
-                        else {
-                            [self.highpassSlider setValue:maxSliderValue animated:YES];
-                            [self.effectsModel changeHighpassValue:powf(10.0, maxSliderValue)];
-                        }
-                    }
-                    
-                    else if(Data == 120){
-                        float nextSliderValue = self.highpassSlider.value-0.15;
-                        float minSliderValue = self.highpassSlider.minimumValue;
-                        if(nextSliderValue >= minSliderValue){
-                            [self.highpassSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeHighpassValue:powf(10.0, nextSliderValue)];
-                            
-                        }
-                        else {
-                            [self.highpassSlider setValue:minSliderValue animated:YES];
-                            [self.effectsModel changeHighpassValue:powf(10.0, minSliderValue)];
-                        }
-                    }
-                }
-                else if( self.function == 1 ){
-                    if(Data == 10){
-                        float nextSliderValue = self.delayFeedbackSlider.value+2.4;
-                        float maxSliderValue = self.delayFeedbackSlider.maximumValue;
-                        if(nextSliderValue <= maxSliderValue){
-                            [self.delayFeedbackSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeDelayFeedback:nextSliderValue];
-                            
-                        }
-                        else {
-                            [self.delayFeedbackSlider setValue:maxSliderValue animated:YES];
-                            [self.effectsModel changeDelayFeedback:maxSliderValue];
-                            
-                        }
-                    }
-                    else if(Data == 20){
-                        float nextSliderValue = self.delayFeedbackSlider.value-2.4;
-                        float minSliderValue = self.delayFeedbackSlider.minimumValue;
-                        if(nextSliderValue >= minSliderValue){
-                            [self.delayFeedbackSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeDelayFeedback:nextSliderValue];
-                            
-                        }
-                        else {
-                            [self.delayFeedbackSlider setValue:minSliderValue animated:YES];
-                            [self.effectsModel changeDelayFeedback:minSliderValue];
-                            
-                        }
-                    }
-                    else if(Data == 30){
-                        float nextSliderValue = self.delayFeedbackSlider.value+5;
-                        float maxSliderValue = self.delayFeedbackSlider.maximumValue;
-                        if(nextSliderValue <= maxSliderValue){
-                            [self.delayFeedbackSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeDelayFeedback:nextSliderValue];
-                            
-                        }
-                        else {
-                            [self.delayFeedbackSlider setValue:maxSliderValue animated:YES];
-                            [self.effectsModel changeDelayFeedback:maxSliderValue];
-                            
-                        }
-                    }
-                    
-                    else if(Data == 40){
-                        float nextSliderValue = self.delayFeedbackSlider.value-5;
-                        float minSliderValue = self.delayFeedbackSlider.minimumValue;
-                        if(nextSliderValue >= minSliderValue){
-                            [self.delayFeedbackSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeDelayFeedback:nextSliderValue];
-                            
-                        }
-                        else {
-                            [self.delayFeedbackSlider setValue:minSliderValue animated:YES];
-                            [self.effectsModel changeDelayFeedback:minSliderValue];
-                            
-                        }
-                    }
-                    
-                    else if(Data == 50){
-                        float nextSliderValue = self.delayTimeSlider.value+0.12;
-                        float maxSliderValue = self.delayTimeSlider.maximumValue;
-                        if(nextSliderValue <= maxSliderValue){
-                            [self.delayTimeSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeDelayTime:nextSliderValue*1.5];
-                        }
-                        else {
-                            [self.delayTimeSlider setValue:maxSliderValue animated:YES];
-                            [self.effectsModel changeDelayTime:maxSliderValue*1.5];
-                        }
-                    }
-                    else if(Data == 60){
-                        float nextSliderValue = self.delayTimeSlider.value-0.12;
-                        float minSliderValue = self.delayTimeSlider.minimumValue;
-                        if(nextSliderValue >= minSliderValue){
-                            [self.delayTimeSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeDelayTime:nextSliderValue*1.5];
-                            
-                            
-                        }
-                        else {
-                            [self.delayTimeSlider setValue:minSliderValue animated:YES];
-                            [self.effectsModel changeDelayTime:minSliderValue*1.5];
-                        }
-                    }
-                    else if(Data == 70){
-                        float nextSliderValue = self.delayTimeSlider.value+0.3;
-                        float maxSliderValue = self.delayTimeSlider.maximumValue;
-                        if(nextSliderValue <= maxSliderValue){
-                            [self.delayTimeSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeDelayTime:nextSliderValue*1.5];
-                            
-                        }
-                        else {
-                            [self.delayTimeSlider setValue:maxSliderValue animated:YES];
-                            [self.effectsModel changeDelayTime:maxSliderValue*1.5];
-                        }
-                    }
-                    
-                    else if(Data == 80){
-                        float nextSliderValue = self.delayTimeSlider.value-0.3;
-                        float minSliderValue = self.delayTimeSlider.minimumValue;
-                        if(nextSliderValue >= minSliderValue){
-                            [self.delayTimeSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeDelayTime:nextSliderValue*1.5];
-                            
-                        }
-                        else {
-                            [self.delayTimeSlider setValue:minSliderValue animated:YES];
-                            [self.effectsModel changeDelayTime:minSliderValue*1.5];
-                        }
-                    }
-                    
-                    else if(Data == 90){
-                        float nextSliderValue = self.delayWetSlider.value+1;
-                        float maxSliderValue = self.delayWetSlider.maximumValue;
-                        if(nextSliderValue <= maxSliderValue){
-                            [self.delayWetSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeDelayWet:nextSliderValue];
-                            
-                        }
-                        else {
-                            [self.delayWetSlider setValue:maxSliderValue animated:YES];
-                            [self.effectsModel changeDelayWet:maxSliderValue];
-                        }
-                    }
-                    else if(Data == 100){
-                        float nextSliderValue = self.delayWetSlider.value-1;
-                        float minSliderValue = self.delayWetSlider.minimumValue;
-                        if(nextSliderValue >= minSliderValue){
-                            [self.delayWetSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeDelayWet:nextSliderValue];
-                            
-                            
-                        }
-                        else {
-                            [self.delayWetSlider setValue:minSliderValue animated:YES];
-                            [self.effectsModel changeDelayWet:minSliderValue];
-                        }
-                    }
-                    else if(Data == 110){
-                        float nextSliderValue = self.delayWetSlider.value+2.2;
-                        float maxSliderValue = self.delayWetSlider.maximumValue;
-                        if(nextSliderValue <= maxSliderValue){
-                            [self.delayWetSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeDelayWet:nextSliderValue];
-                            
-                        }
-                        else {
-                            [self.delayWetSlider setValue:maxSliderValue animated:YES];
-                            [self.effectsModel changeDelayWet:maxSliderValue];
-                        }
-                    }
-                    
-                    else if(Data == 120){
-                        float nextSliderValue = self.delayWetSlider.value-2.2;
-                        float minSliderValue = self.delayWetSlider.minimumValue;
-                        if(nextSliderValue >= minSliderValue){
-                            [self.delayWetSlider setValue:nextSliderValue animated:YES];
-                            [self.effectsModel changeDelayWet:nextSliderValue];
-                            
-                        }
-                        else {
-                            [self.delayWetSlider setValue:minSliderValue animated:YES];
-                            [self.effectsModel changeDelayWet:minSliderValue];
-                        }
-                    }
-                    
-                }
                 
+                break;
+            }
+            case 2:{
+                break;
+            }
+            case 3:{
                 break;
             }
             default:
@@ -729,6 +258,5 @@
     }
     //    self.packetSizeLabel.text = [NSString stringWithFormat:@"%d",length];
 }
-
 
 @end

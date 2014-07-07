@@ -28,25 +28,7 @@
 @property (nonatomic) int lockState;
 
 /////////////
-@property (weak, nonatomic) IBOutlet UISwitch *reverbInstrumentalSwitch;
 
-@property (weak, nonatomic) IBOutlet UISwitch *reverbVocalSwitch;
-
-@property (weak, nonatomic) IBOutlet UISwitch *lowpassInstrumentalSwitch;
-
-@property (weak, nonatomic) IBOutlet UISwitch *lowpassVocalSwitch;
-
-@property (weak, nonatomic) IBOutlet UISwitch *highpassInstrumentalSwitch;
-
-@property (weak, nonatomic) IBOutlet UISwitch *highpassVocalSwitch;
-
-@property (weak, nonatomic) IBOutlet UISwitch *chipmunkInstrumentalSwitch;
-
-@property (weak, nonatomic) IBOutlet UISwitch *chipmunkVocalSwitch;
-
-@property (weak, nonatomic) IBOutlet UISwitch *delaytimeInstrumentalSwitch;
-
-@property (weak, nonatomic) IBOutlet UISwitch *delaytimeVocalSwitch;
 /////////
 
 
@@ -55,7 +37,6 @@
 - (IBAction)resetSensor:(UIButton *)sender;
 
 - (IBAction)switchLockState:(UIButton *)sender;
-- (IBAction)switchFunction:(UIButton *)sender;
 
 - (IBAction)connect:(id)sender;
 
